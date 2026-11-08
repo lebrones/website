@@ -26,6 +26,7 @@
 
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  html { scroll-snap-type: y proximity; }
   body { font-family: var(--font); font-size: 16px; line-height: 1.4; -webkit-font-smoothing: antialiased; overflow-x: clip; }
   a { color: inherit; }
   button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
@@ -69,10 +70,11 @@
   .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
   .shot { position: absolute; left: 50%; top: 0; margin: 0; cursor: pointer; will-change: transform, width, height; }
   .shot .pic { width: 100%; height: 100%; overflow: hidden; background: var(--empty); }
-  .shot img { width: 100%; height: 100%; object-fit: cover; will-change: filter, transform; }
-  .shot .num { position: absolute; bottom: -3px; font-size: 13px; white-space: nowrap; transition: opacity .3s ease; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; }
+  .shot .num { position: absolute; bottom: -3px; font-size: 13px; white-space: nowrap; }
   .shot.l .num { right: calc(100% + 16px); }
   .shot.r .num { left: calc(100% + 16px); }
+  .snap { position: absolute; left: 0; width: 1px; height: 1px; scroll-snap-align: start; pointer-events: none; }
   .empty-note { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); }
 
   /* ---------- gallery view ---------- */
@@ -284,8 +286,7 @@
   const GAP = 26;            // space between photos, px
   const NEXT = 0.30;         // size of the photos just above and below, relative to the centre one
   const FAR = 0.13;          // size of photos two or more places away
-  const BLUR = 14;           // blur (px) on photos that are not in the centre
-  const EASE = 0.06;         // 0..1 per frame: lower = smoother, slower glide
+  const EASE = 0.12;         // 0..1 per frame: lower = smoother, slower glide
 
   const vh = () => stage.clientHeight || window.innerHeight;
   const step = () => Math.round(vh() * 0.55);    // scroll distance from one photo to the next
@@ -305,7 +306,12 @@
     sizeList();
   }
   function sizeList() {
-    list.style.height = `calc(${Math.max(0, shots.length - 1) * step()}px + 100svh)`;
+    const s = step();
+    list.style.height = `calc(${Math.max(0, shots.length - 1) * s}px + 100svh)`;
+    list.querySelectorAll('.snap').forEach(x => x.remove());
+    shots.forEach((_, i) => {
+      const m = document.createElement('i'); m.className = 'snap'; m.style.top = (i * s) + 'px'; list.appendChild(m);
+    });
   }
   function bigSize(p) {
     // the centred photo: fits under the top bar and never wider than the centre column
@@ -317,14 +323,8 @@
     const h = Math.min(maxH, maxW / a);
     return [h * a, h];
   }
-  // size as a function of distance from the centre: 1 at the centre, NEXT at one place away,
-  // FAR beyond; smoothstep in between so the growth eases in and out
-  const smooth = t => t * t * (3 - 2 * t);
-  function scaleAt(d) {
-    if (d <= 1) return 1 + (NEXT - 1) * smooth(d);
-    if (d <= 2) return NEXT + (FAR - NEXT) * smooth(d - 1);
-    return FAR;
-  }
+  // size as a function of distance from the centre: 1 at the centre, NEXT one place away, FAR beyond
+  const scaleAt = d => Math.max(FAR, 1 - (1 - NEXT) * d);
   const listTop = () => list.getBoundingClientRect().top + window.scrollY;
   function goTo(i, smoothScroll = true) {
     window.scrollTo({ top: listTop() + i * step(), behavior: smoothScroll ? 'smooth' : 'auto' });
@@ -332,18 +332,17 @@
 
   /* The drawn position ("shown") glides toward the scroll position instead of jumping with it,
      so each wheel click or swipe becomes one continuous movement. */
-  let shown = null, lastT = 0;
+  let shown = null;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   function target() {
     return Math.min(Math.max(0, shots.length - 1), Math.max(0, (window.scrollY - listTop()) / step()));
   }
-  function update(now) {
+  function update() {
     if (body.dataset.view !== 'home' || body.dataset.mode !== 'list' || !shots.length) return false;
     const t = target();
-    const dt = lastT ? Math.min(64, now - lastT) : 16.7; lastT = now;
     if (shown === null || reduceMotion.matches) shown = t;
-    else shown += (t - shown) * (1 - Math.pow(1 - EASE, dt / 16.7));   // same feel at 60Hz and 120Hz
-    const settled = Math.abs(t - shown) < 0.0008;
+    else shown += (t - shown) * EASE;
+    const settled = Math.abs(t - shown) < 0.0015;
     if (settled) shown = t;
     draw(shown);
     return !settled;
@@ -370,29 +369,14 @@
       sh.el.style.width = w + 'px';
       sh.el.style.height = h + 'px';
       sh.el.style.transform = `translate3d(${-w / 2}px, ${y}px, 0)`;
-      // blur fades out as the photo reaches the centre
-      const d = Math.min(1, Math.abs(i - f));
-      const b = BLUR * smooth(d);
-      sh.img.style.filter = b > 0.05 ? `blur(${b.toFixed(2)}px)` : 'none';
-      sh.img.style.transform = b > 0.05 ? `scale(${(1 + b / 60).toFixed(3)})` : 'none';   // hides soft edges
-      sh.num.style.opacity = d < 0.5 ? 1 : 0.35;
     });
     [Math.ceil(f) + 1, Math.ceil(f) + 2].forEach(i => { const sh = shots[i]; if (sh && !sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; } });
   }
   let running = false;
-  function loop(now) { if (update(now)) requestAnimationFrame(loop); else { running = false; lastT = 0; } }
+  function loop() { if (update()) requestAnimationFrame(loop); else running = false; }
   const schedule = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
 
-  // after scrolling stops, glide to the nearest photo so one always ends up centred
-  let idle;
-  window.addEventListener('scroll', () => {
-    schedule();
-    clearTimeout(idle);
-    if (body.dataset.view === 'home' && body.dataset.mode === 'list') idle = setTimeout(() => {
-      const t = target(), n = Math.round(t);
-      if (Math.abs(t - n) > 0.02) goTo(n);
-    }, 160);
-  }, { passive: true });
+  window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', () => { sizeList(); schedule(); });
   document.addEventListener('keydown', e => {
     if (body.dataset.view !== 'home' || body.dataset.mode !== 'list') return;
