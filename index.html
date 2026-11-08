@@ -4,227 +4,190 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alberto Bonino — Photography</title>
-<meta name="description" content="Film photography by Alberto Bonino, in colour and black and white.">
-<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Black and white film photography by Alberto Bonino.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <script src="assets/data/photos.js"></script>
 <style>
-  /* Layout: white gallery wall. The cover photo fills the space between the top navbar and the low COLORS / B&W bar,
-     inside the same side gutter. Grids alternate 2-up, 3-up and full-bleed rows. */
   :root {
     --paper: #ffffff;
     --ink: #111111;
-    --muted: #8a8a8a;
-    --empty: #e6e6e6;
-    --line: #d9d9d9;
-    --on-dark: #ffffff;
-    --off: #9b9b9b;
-    --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    --gap: 12px;
+    --muted: #a3a3a3;
+    --line: #dddddd;
+    --empty: #ececec;
+    --font: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
     --pad-l: max(16px, env(safe-area-inset-left, 0px));
     --pad-r: max(16px, env(safe-area-inset-right, 0px));
-    --top-bar: calc(60px + env(safe-area-inset-top, 0px));
-    --low-bar: calc(82px + env(safe-area-inset-bottom, 0px));
-    /* Content width cap: two portrait (2:3) photos side by side must fit on screen in full,
-       below the header with a small margin. Height available = 100svh - top bar - 24px;
-       each portrait is 2/3 of that wide, so two of them plus the gap give the cap. */
-    --fit-h: calc(100vh - var(--top-bar) - 24px);
-    --fit-h: calc(100svh - var(--top-bar) - 24px);
-    --maxw: calc(var(--fit-h) * 4 / 3 + var(--gap));
-    /* left/right edge of the centred content column */
-    --edge-l: max(var(--pad-l), calc((100% - var(--maxw)) / 2));
-    --edge-r: max(var(--pad-r), calc((100% - var(--maxw)) / 2));
+    --pad-t: max(16px, env(safe-area-inset-top, 0px));
+    --pad-b: max(16px, env(safe-area-inset-bottom, 0px));
     color-scheme: light;
   }
-  @media (min-width: 900px) { :root { --gap: 16px; --pad-l: max(28px, env(safe-area-inset-left, 0px)); --pad-r: max(28px, env(safe-area-inset-right, 0px)); } }
+  @media (min-width: 900px) {
+    :root { --pad-l: max(36px, env(safe-area-inset-left, 0px)); --pad-r: max(36px, env(safe-area-inset-right, 0px)); --pad-t: 28px; --pad-b: 28px; }
+  }
 
-  html, body { background: var(--paper); color: var(--ink); }
-  body { margin: 0; font-family: var(--font); font-size: 14px; line-height: 1.45; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  html { scroll-snap-type: y proximity; }
+  body { font-family: var(--font); font-size: 13px; line-height: 1.45; text-transform: uppercase; letter-spacing: .02em; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; }
-  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-transform: inherit; letter-spacing: inherit; }
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+  img { display: block; }
 
-  /* ---------- header ---------- */
-  .site-header {
-    position: fixed; inset: 0 0 auto; z-index: 50;
-    display: flex; justify-content: space-between; align-items: center;
-    padding-top: calc(18px + env(safe-area-inset-top, 0px)); padding-bottom: 18px;
-    padding-left: var(--pad-l); padding-right: var(--pad-r);
-    color: #fff; mix-blend-mode: difference; pointer-events: none;
+  /* ---------- fixed chrome ---------- */
+  .top {
+    position: fixed; z-index: 30; inset: 0 0 auto;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding: var(--pad-t) var(--pad-r) 12px var(--pad-l);
+    pointer-events: none;
   }
-  .site-header > * { pointer-events: auto; }
-  .brand { text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 0.01em; display: inline-flex; align-items: center; gap: 12px; }
-  .brand .logo { height: 22px; width: auto; display: block; fill: currentColor; }
-  .menu-btn { width: 32px; height: 24px; position: relative; }
-  .menu-btn i { position: absolute; left: 4px; right: 4px; height: 1.5px; background: currentColor; transition: transform .3s ease, top .3s ease; }
-  .menu-btn i:nth-child(1) { top: 8px; }
-  .menu-btn i:nth-child(2) { top: 15px; }
-  .menu-open .menu-btn i:nth-child(1) { top: 11.5px; transform: rotate(45deg); }
-  .menu-open .menu-btn i:nth-child(2) { top: 11.5px; transform: rotate(-45deg); }
+  .top > * { pointer-events: auto; }
+  .brand { font-weight: 700; font-size: 15px; text-decoration: none; letter-spacing: .04em; }
+  .nav { display: flex; gap: 18px; }
+  .nav a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; font-size: 14px; }
+  .nav a[aria-current="page"] { text-decoration-thickness: 2px; }
+  .nav a:hover { color: var(--muted); }
 
-  .menu {
-    position: fixed; z-index: 45; top: 0; right: 0;
-    width: min(320px, 100%);
-    padding-top: calc(72px + env(safe-area-inset-top, 0px)); padding-bottom: 28px;
-    padding-left: 28px; padding-right: var(--pad-r);
-    background: var(--paper); color: var(--ink);
-    display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
-    transform: translateY(-100%); transition: transform .45s cubic-bezier(.7,0,.2,1);
-    box-shadow: 0 1px 0 var(--line);
+  .series {
+    position: fixed; z-index: 20; left: var(--pad-l); top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; align-items: flex-start; gap: 2px; max-width: 26vw;
   }
-  .menu-open .menu { transform: none; }
-  .menu a { text-decoration: none; font-size: 22px; letter-spacing: -0.01em; }
-  .menu a:hover { color: var(--muted); }
-  .menu .reach {
-    margin-top: 10px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
-    border: 1px solid var(--ink); padding: 11px 18px;
-  }
-  .menu .reach:hover { background: var(--ink); color: var(--paper); }
+  .series button { color: var(--muted); font-size: 14px; text-align: left; transition: color .25s ease, font-size .25s ease; }
+  .series button:hover { color: var(--ink); }
+  .series button.current { color: var(--ink); font-weight: 700; font-size: clamp(20px, 2.4vw, 34px); letter-spacing: 0; line-height: 1.15; margin: 4px 0; }
 
-  /* ---------- cover ---------- */
-  .hero { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--paper); }
-  .frame {
-    position: absolute; left: var(--edge-l); right: var(--edge-r); top: var(--top-bar); bottom: var(--low-bar);
-    background: var(--empty); overflow: hidden;
-  }
-  .frame img, .frame picture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-  .frame .seq[data-empty] { visibility: hidden; }
-  .frame .cover { opacity: 0; transition: opacity .7s ease; }
-  .hero.landed .seq { opacity: 0; }
-  body[data-mode="color"] .hero.landed .cover-color,
-  body[data-mode="bw"] .hero.landed .cover-bw { opacity: 1; }
+  .views { position: fixed; z-index: 20; right: var(--pad-r); top: 50%; transform: translateY(-50%); display: flex; gap: 14px; }
+  .views button { color: var(--muted); font-size: 14px; }
+  .views button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .views button:hover { color: var(--ink); }
 
-  /* ---------- COLORS / B&W ---------- */
-  .modes {
-    position: fixed; z-index: 40;
-    left: max(var(--pad-l), calc((100vw - var(--maxw)) / 2)); bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
-    opacity: 0; transform: translateY(8px); pointer-events: none;
-    transition: opacity .6s ease, transform .6s ease;
-  }
-  .modes.show { opacity: 1; transform: none; pointer-events: auto; }
-  .modes button { font-size: 12px; letter-spacing: .14em; font-weight: 500; text-align: left; color: var(--off); transition: color .3s ease, text-shadow .3s ease; }
-  .modes button[aria-pressed="true"] { color: var(--ink); }
-  .modes button[aria-pressed="true"][data-tone="dark"] { color: var(--on-dark); }
-  .modes button:not([aria-pressed="true"]):hover { color: var(--muted); }
-  /* a little shadow once the page scrolls, matched to what is behind each word */
-  .modes.scrolled button[data-tone="light"] { text-shadow: 0 0 10px rgba(255,255,255,.7), 0 1px 2px rgba(255,255,255,.5); }
-  .modes.scrolled button[data-tone="dark"] { text-shadow: 0 0 10px rgba(0,0,0,.45), 0 1px 2px rgba(0,0,0,.35); }
-  body:not([data-view="home"]) .modes { display: none; }
+  body:not([data-view="home"]) .series,
+  body:not([data-view="home"]) .views { display: none; }
 
-  /* ---------- grids ---------- */
-  .gallery { display: flex; flex-direction: column; gap: var(--gap); padding-block: var(--gap) calc(var(--gap) * 6); }
-  .gallery[hidden] { display: none !important; }
-  .gallery.fade { animation: fade .6s ease both; }
-  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-  .row { display: grid; gap: var(--gap); padding-left: var(--edge-l); padding-right: var(--edge-r); }
-  .row.two { grid-template-columns: repeat(2, 1fr); }
-  .row.three { grid-template-columns: repeat(3, 1fr); }
-  .row.full { margin-block: calc(var(--gap) * 3); }
-  .cell { aspect-ratio: 3 / 4; max-width: 100%; background: var(--empty); overflow: hidden; }
-  .row.full .cell { aspect-ratio: 3 / 2; width: 100%; }
-  .row.full .cell.port { aspect-ratio: 2 / 3; height: var(--fit-h); width: auto; justify-self: center; }
-  .cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .cell.land { aspect-ratio: 3 / 2; }
-  .cell.port { aspect-ratio: 2 / 3; }
-  @media (max-width: 560px) {
-    .row.three { grid-template-columns: 1fr; }
-  }
+  /* ---------- list view: one column, the centred photo is largest ---------- */
+  .list { position: relative; }
+  .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+  .shot { position: absolute; left: 50%; top: 0; margin: 0; cursor: pointer; will-change: transform; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; background: var(--empty); }
+  .shot .num { position: absolute; bottom: -2px; font-size: 11px; letter-spacing: .04em; white-space: nowrap; }
+  .shot.l .num { right: calc(100% + 16px); }
+  .shot.r .num { left: calc(100% + 16px); }
+  .snap { position: absolute; left: 0; width: 1px; height: 1px; scroll-snap-align: start; pointer-events: none; }
+
+  /* ---------- gallery view ---------- */
+  .gallery { padding: calc(var(--pad-t) + 64px) var(--pad-r) 96px var(--pad-l); }
+  .gallery-grid { display: flex; gap: 20px; align-items: flex-start; max-width: 1200px; margin: 0 auto; padding-inline: clamp(0px, 8vw, 140px); }
+  .gallery-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 26px; }
+  .gallery figure { margin: 0; cursor: pointer; }
+  body[data-mode="gallery"] .series { display: none; }
+  .gallery img { width: 100%; height: auto; background: var(--empty); }
+  .gallery figcaption { margin-top: 6px; font-size: 11px; }
+  .gallery figure:hover img { opacity: .85; }
 
   /* ---------- inner pages ---------- */
-  .page { min-height: 100vh; padding-top: calc(120px + env(safe-area-inset-top, 0px)); padding-bottom: 96px; padding-left: var(--pad-l); padding-right: var(--pad-r); }
-  .page[hidden], .home[hidden] { display: none !important; }
-  .eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
-  .page h1 { font-size: clamp(32px, 6vw, 72px); font-weight: 400; letter-spacing: -0.03em; line-height: 1; margin: 0 0 48px; text-wrap: balance; }
-  .about { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); align-items: start; }
-  .about .cell { max-width: 460px; }
-  .about p { font-size: 17px; line-height: 1.55; max-width: 34em; margin: 0 0 1em; }
-  .facts { margin-top: 40px; display: grid; grid-template-columns: max-content 1fr; gap: 10px 32px; font-size: 13px; max-width: 34em; }
+  .page { min-height: 100vh; padding: calc(var(--pad-t) + 110px) var(--pad-r) 96px var(--pad-l); }
+  .page[hidden], main[hidden], .list[hidden], .gallery[hidden] { display: none !important; }
+  .eyebrow { font-size: 11px; color: var(--muted); margin: 0 0 18px; }
+  .page h1 { font-size: clamp(28px, 5vw, 64px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; margin: 0 0 48px; }
+  .page p, .page dd, .page input, .page textarea, .page .mail { text-transform: none; letter-spacing: 0; }
+  .about { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); align-items: start; max-width: 1200px; }
+  .about .portrait { aspect-ratio: 3 / 4; background: var(--empty); max-width: 420px; }
+  .about .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .about p { font-size: 15px; line-height: 1.6; max-width: 36em; margin: 0 0 1em; }
+  .facts { margin-top: 40px; display: grid; grid-template-columns: max-content 1fr; gap: 10px 32px; font-size: 12px; max-width: 36em; }
   .facts dt { color: var(--muted); }
   .facts dd { margin: 0; }
-  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
 
-  .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px var(--gap); }
+  .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 20px; max-width: 1400px; }
   .work-grid figure { margin: 0; }
-  .work-grid figcaption { margin-top: 10px; font-size: 12px; display: flex; justify-content: space-between; gap: 12px; }
-  .work-grid figcaption span:last-child { color: var(--muted); font-variant-numeric: tabular-nums; }
-  .work-grid .wide { grid-column: span 2; }
-  .work-grid .wide .cell { aspect-ratio: 3 / 2; }
-  @media (max-width: 760px) { .work-grid { grid-template-columns: 1fr; } .work-grid .wide { grid-column: auto; } }
+  .work-grid .ph { aspect-ratio: 3 / 2; background: var(--empty); }
+  .work-grid figcaption { margin-top: 8px; font-size: 11px; display: flex; justify-content: space-between; gap: 12px; }
+  .work-grid figcaption span:last-child { color: var(--muted); }
 
   .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); max-width: 1100px; }
-  .contact .mail { font-size: clamp(20px, 3vw, 32px); letter-spacing: -0.01em; user-select: all; word-break: break-all; }
-  .copy { margin-top: 14px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .contact .mail { font-size: clamp(18px, 2.4vw, 28px); user-select: all; word-break: break-all; }
+  .copy { margin-top: 14px; font-size: 11px; color: var(--muted); }
   .copy:hover { color: var(--ink); }
   form { display: flex; flex-direction: column; gap: 22px; }
-  label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-  input, textarea { font: inherit; font-size: 16px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0; border-radius: 0; letter-spacing: 0; text-transform: none; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--muted); }
+  input, textarea { font: inherit; font-size: 15px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0; border-radius: 0; }
   input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); }
   textarea { resize: vertical; min-height: 110px; }
-  .send { align-self: flex-start; border: 1px solid var(--ink); padding: 12px 22px; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+  .send { align-self: flex-start; border: 1px solid var(--ink); padding: 12px 22px; font-size: 12px; }
   .send:hover { background: var(--ink); color: var(--paper); }
-  .note { font-size: 13px; min-height: 1.4em; margin: 0; }
-  @media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+  .note { font-size: 12px; min-height: 1.4em; margin: 0; }
 
-  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 28px; padding-left: var(--pad-l); padding-right: var(--pad-r); font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); }
-  footer a { text-decoration: none; }
-  footer a:hover { color: var(--ink); }
+  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 24px var(--pad-r) calc(var(--pad-b) + 8px) var(--pad-l); font-size: 11px; color: var(--muted); border-top: 1px solid var(--line); }
+  body[data-view="home"][data-mode="list"] footer { display: none; }
+
+  /* ---------- phones ---------- */
+  @media (max-width: 760px) {
+    .nav { gap: 12px; }
+    .nav a { font-size: 12px; }
+    .brand { font-size: 13px; }
+    .series { top: auto; bottom: var(--pad-b); transform: none; max-width: 60vw; z-index: 25; }
+    .series button:not(.current) { display: none; }
+    .series button.current { font-size: 16px; margin: 0; }
+    .series.open button { display: block; }
+    .views { top: auto; bottom: var(--pad-b); transform: none; z-index: 25; }
+    .views button { font-size: 12px; }
+    .shot .num { display: none; }
+    .top { background: var(--paper); padding-bottom: 14px; }
+    body[data-view="home"]::after { content: ""; position: fixed; z-index: 22; left: 0; right: 0; bottom: 0; height: calc(var(--pad-b) + 34px); background: var(--paper); }
+    .gallery-grid { gap: 12px; padding-inline: 0; }
+    .gallery-col { gap: 18px; }
+    .about, .contact { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+  }
 
   @media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; }
     *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
   }
 </style>
 </head>
-<body>
+<body data-view="home" data-mode="list">
 
-<header class="site-header">
-  <a class="brand" href="#" aria-label="Alberto Bonino portfolio, home"><svg class="logo" viewBox="104 163 816 442" aria-hidden="true"><path d="M543.23,601.59c-27.75,5.51-41.13-25.94-80.72-40.27-31.64-11.46-48.27-.49-106.06,5.82-85.86,9.37-132.08,14.25-174.32-8.68-36.38-19.75-52.68-50.89-57.75-60.9-6.34-12.52-30.34-59.94-9.44-84.11,13.99-16.18,57.41-10.59,143.87-.02,65.11,7.96,97.2,14.8,117,27.8,11.25,7.39,29.25,21.64,54.76,21.51,4.07-.02,13.09-.43,33.93-8.46,29.09-11.22,55.6-21.43,69.11-41.29,9.29-13.66,5.11-21.11,2.52-75.19-4.25-89,6.76-75.16.02-119.15-3.35-21.81-8.25-39.54,2.52-48.1,8.59-6.82,24.97-6.07,35.18.66,9.44,6.23,11.7,16.31,15.07,65.93,1.61,23.78,2.15,37.08,3.76,63.62,1.7,28.08,2.77,40.67,4.04,52.99,2.59,24.98,4.98,38.57,8.8,52.7,2.76,10.23,5.69,18.61,7.92,24.51,2.63-4.54,7.02-11.01,14.09-17.21,21.09-18.51,49.98-20.64,93.35-19.47,72.7,1.95,109.06,2.93,131.21,15.39,39.66,22.3,76.55,70.07,62.21,98.12-13.72,26.83-69.74,26.72-115.6,26.62-47.96-.1-96.79-8.47-159.33-19.4-47.79-8.35-76.67-15.02-86.53-2.03-7.52,9.9-5.44,33.42,6.51,41.44,6.04,4.05,18.26,6.61,20.81,15.96.04.15.09.33.13.54,2.17,10.32-20.2,27.34-37.05,30.68ZM774.82,474.25c35.96,6.3,83.91-6.29,84.18-20.04.25-12.37-38.05-28.46-68.2-21.68-16.66,3.75-28.04,13.85-32.31,17.64-8.66,7.69-8.44,11.11-8.23,12.3,1.41,7.72,18.98,10.8,24.56,11.78ZM364.85,513.96c2.5-9.85-26.39-23.54-47.25-33.43-19.31-9.15-88.45-41.91-119.48-17.18-7.63,6.08-14.23,16.65-11.79,25.74,2.59,9.62,15.14,16.91,50.4,23.92,46.23,9.18,124.19,16.42,128.11.95Z"/></svg><span>Alberto Bonino portfolio</span></a>
-  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+<header class="top">
+  <a class="brand" href="#">Alberto Bonino</a>
+  <nav class="nav" aria-label="Main">
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+  </nav>
 </header>
 
-<nav class="menu" id="menu" aria-label="Main">
-  <a href="#about">About me</a>
-  <a href="#work">My professional work</a>
-  <a href="#contact" class="reach">Reach out</a>
-</nav>
+<aside class="series" id="series" aria-label="Series"></aside>
+
+<div class="views" role="group" aria-label="View">
+  <button id="vList" aria-pressed="true">List</button>
+  <button id="vGallery" aria-pressed="false">Gallery</button>
+</div>
 
 <!-- ============ HOME ============ -->
-<main class="home" id="home">
-  <section class="hero" id="hero" aria-label="Cover">
-    <div class="frame" id="frame">
-      <img class="seq" id="seq" alt="" data-empty>
-      <!-- desktop covers are landscape, phone covers are portrait -->
-      <picture class="cover cover-color">
-        <source media="(min-width: 900px) and (orientation: landscape)" srcset="assets/images/prototype-color/7.jpg">
-        <img src="assets/images/prototype-color/9.jpg" alt="Colour cover photograph">
-      </picture>
-      <picture class="cover cover-bw">
-        <source media="(min-width: 900px) and (orientation: landscape)" srcset="assets/images/projects/black-and-white/R1-02540-0016.webp">
-        <img src="assets/images/projects/black-and-white/R1-06987-0027.webp" alt="Black and white cover photograph">
-      </picture>
-    </div>
+<main id="home">
+  <section class="list" id="list" aria-label="Photographs">
+    <div class="stage" id="stage"></div>
   </section>
-
-  <div class="gallery" id="gallery-color" aria-label="Colour photographs"></div>
-  <div class="gallery" id="gallery-bw" aria-label="Black and white photographs" hidden></div>
+  <section class="gallery" id="gallery" aria-label="All photographs" hidden>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </section>
 </main>
-
-<div class="modes" id="modes" role="group" aria-label="Photo set">
-  <button id="modeColor" aria-pressed="true" data-tone="light">COLORS</button>
-  <button id="modeBw" aria-pressed="false" data-tone="light">B&amp;W</button>
-</div>
 
 <!-- ============ ABOUT ============ -->
 <section class="page" id="about" hidden>
-  <p class="eyebrow">About me</p>
+  <p class="eyebrow">About</p>
   <h1>Alberto Bonino</h1>
   <div class="about">
-    <div class="cell" role="img" aria-label="Portrait placeholder"></div>
+    <div class="portrait" id="portrait"></div>
     <div>
-      <p>I photograph on 35mm film and digital, in colour and in black and white. Most of my pictures start with a single figure or object and a lot of empty space around it: a surfer leaving the water in fog, a lighthouse on a dark coast, a gap of light between two rocks.</p>
+      <p>I photograph on 35mm film, mostly in black and white. Most of my pictures start with a single figure or object and a lot of empty space around it: a surfer leaving the water, a lighthouse on a dark coast, a figure floating in grey water.</p>
       <p>Replace this text with your own story: where you are based, how you started, what you look for when you press the shutter.</p>
       <dl class="facts">
         <dt>Based in</dt><dd>City, Country</dd>
-        <dt>Formats</dt><dd>35mm film, digital</dd>
+        <dt>Formats</dt><dd>35mm film</dd>
         <dt>Available for</dt><dd>Editorial, brand, events</dd>
       </dl>
     </div>
@@ -233,14 +196,14 @@
 
 <!-- ============ WORK ============ -->
 <section class="page" id="work" hidden>
-  <p class="eyebrow">My professional work</p>
+  <p class="eyebrow">Work</p>
   <h1>Commissions and client projects</h1>
   <div class="work-grid" id="workGrid"></div>
 </section>
 
 <!-- ============ CONTACT ============ -->
 <section class="page" id="contact" hidden>
-  <p class="eyebrow">Reach out</p>
+  <p class="eyebrow">Contact</p>
   <h1>Let's work together</h1>
   <div class="contact">
     <div>
@@ -262,219 +225,191 @@
 
 <footer>
   <span>© 2026 Alberto Bonino</span>
-  <span><a href="#about">About</a> · <a href="#work">Work</a> · <a href="#contact">Reach out</a></span>
+  <span>Black and white, 35mm film</span>
 </footer>
 
 <script>
 (function () {
   const body = document.body;
-  const IMG = n => `assets/images/prototype-color/${n}.jpg`;
-  const BW = f => `assets/images/projects/black-and-white/${f}.webp`;
-  const DESKTOP = window.matchMedia('(min-width: 900px) and (orientation: landscape)');
-  const COVERS = {
-    desktop: { color: IMG(7), bw: BW('R1-02540-0016') },
-    phone:   { color: IMG(9), bw: BW('R1-06987-0027') },
-  };
-  const coverSrc = mode => COVERS[DESKTOP.matches ? 'desktop' : 'phone'][mode];
 
-  /* ---------- B&W layout: built from assets/data/photos.js ----------
-     Landscapes go in rows of two, portraits in rows of three, and every few rows
-     a landscape runs full width. Edit PATTERN to change the rhythm. */
-  const PATTERN = ['L2', 'P3', 'L2', 'L1', 'P3', 'L2', 'P2'];
-  function layout(photos) {
-    const land = photos.filter(p => p.w >= p.h), port = photos.filter(p => p.w < p.h);
-    const take = (q, n) => q.splice(0, n);
-    const rows = [];
-    let i = 0;
-    while (land.length || port.length) {
-      const step = PATTERN[i++ % PATTERN.length];
-      let q = step[0] === 'L' ? land : port, n = +step[1];
-      if (!q.length) { q = q === land ? port : land; n = q === land ? 2 : 3; }
-      const items = take(q, n);
-      const type = n === 1 ? 'full' : n === 2 ? 'two' : 'three';
-      rows.push({ type, items: items.map(p => ({ src: p.src, alt: 'Black and white film photograph', o: p.w >= p.h ? 'land' : 'port' })) });
-    }
-    return rows;
+  /* ---------- photos ----------
+     assets/data/photos.js holds one list per series (generated by tools/build-manifest.py).
+     LABELS gives each series the name shown in the left-hand list. */
+  const LABELS = { bw: 'Black & White' };
+  const DATA = window.PHOTOS || {};
+  const SERIES = Object.keys(DATA).filter(k => DATA[k].length);
+  const ALL = SERIES.flatMap(k => DATA[k].map(p => ({ ...p, series: k })));
+  let filter = 'all';
+  let photos = ALL;
+
+  /* ---------- series list ---------- */
+  const seriesEl = document.getElementById('series');
+  function renderSeries(currentKey) {
+    const items = [['all', 'Everything'], ...SERIES.map(k => [k, LABELS[k] || k])];
+    seriesEl.innerHTML = items.map(([k, label]) =>
+      `<button data-k="${k}" class="${k === currentKey ? 'current' : ''}" aria-pressed="${k === filter}">${label}</button>`).join('');
+  }
+  seriesEl.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (window.matchMedia('(max-width: 760px)').matches && !seriesEl.classList.contains('open')) { seriesEl.classList.add('open'); return; }
+    seriesEl.classList.remove('open');
+    filter = b.dataset.k;
+    photos = filter === 'all' ? ALL : ALL.filter(p => p.series === filter);
+    buildList(); buildGallery();
+    window.scrollTo(0, 0);
+    update();
+  });
+
+  /* ---------- list view ---------- */
+  const list = document.getElementById('list');
+  const stage = document.getElementById('stage');
+  let shots = [];
+  const GAP = 26;            // space between photos, px
+  const MIN_SCALE = 0.26;    // size of photos far from the centre
+  const FALLOFF = 0.4;       // how fast photos shrink away from the centre
+
+  const vh = () => stage.clientHeight || window.innerHeight;
+  const step = () => Math.round(vh() * 0.55);    // scroll distance from one photo to the next
+
+  function buildList() {
+    stage.innerHTML = '';
+    list.querySelectorAll('.snap').forEach(s => s.remove());
+    shots = photos.map((p, i) => {
+      const f = document.createElement('figure');
+      f.className = 'shot ' + (i % 2 ? 'r' : 'l');
+      f.innerHTML = `<img alt="Black and white film photograph ${i + 1}" decoding="async"><span class="num">(${i + 1})</span>`;
+      f.addEventListener('click', () => goTo(i));
+      stage.appendChild(f);
+      return { el: f, img: f.querySelector('img'), p, loaded: false };
+    });
+    sizeList();
+  }
+  function sizeList() {
+    const s = step();
+    list.style.height = `calc(${(shots.length - 1) * s}px + 100svh)`;
+    list.querySelectorAll('.snap').forEach(x => x.remove());
+    shots.forEach((_, i) => {
+      const m = document.createElement('i'); m.className = 'snap'; m.style.top = (i * s) + 'px'; list.appendChild(m);
+    });
+  }
+  function bigSize(p) {
+    // largest size for the centred photo: fits under the header, and never wider than the centre column
+    const W = window.innerWidth, H = vh();
+    const phone = W <= 760;
+    const maxH = H - (phone ? 150 : 150);
+    const maxW = phone ? W - 32 : Math.min(W * 0.5, 1000);
+    const a = p.w / p.h;
+    const h = Math.min(maxH, maxW / a);
+    return [h * a, h];
+  }
+  function goTo(i, smooth = true) {
+    window.scrollTo({ top: list.offsetTop + i * step(), behavior: smooth ? 'smooth' : 'auto' });
   }
 
-  /* ---------- gallery data: null = empty grey frame ---------- */
-  const GALLERIES = {
-    color: [
-      { type: 'two',   items: [{ src: IMG(5), alt: 'Minaret with green zellige tilework against a blue sky' }, { src: IMG(9), alt: 'Mirrored photo booth on a seaside promenade' }] },
-      { type: 'three', items: [null, { src: IMG(1), alt: 'Balloon light on a pole at dusk' }, null] },
-      { type: 'full',  items: [{ src: IMG(7), alt: 'Red and white lighthouse above a volcanic coast' }] },
-      { type: 'two',   items: [null, null] },
-      { type: 'three', items: [null, null, null] },
-    ],
-    bw: layout((window.PHOTOS && window.PHOTOS.bw) || []),
-  };
-
-  function renderGallery(el, rows) {
-    el.innerHTML = rows.map(r => `<div class="row ${r.type}">${r.items.map(it =>
-      it ? `<div class="cell ${it.o || ''}"><img src="${it.src}" alt="${it.alt}" loading="lazy" decoding="async"></div>`
-         : `<div class="cell" aria-hidden="true"></div>`).join('')}</div>`).join('');
+  let current = -1;
+  function update() {
+    if (body.dataset.view !== 'home' || body.dataset.mode !== 'list' || !shots.length) return;
+    const s = step(), H = vh();
+    const f = Math.min(shots.length - 1, Math.max(0, (window.scrollY - list.offsetTop) / s));
+    // size of every photo for this scroll position
+    const dims = shots.map((sh, i) => {
+      const d = Math.abs(i - f);
+      const k = Math.max(MIN_SCALE, 1 - FALLOFF * d);
+      const [w, h] = bigSize(sh.p);
+      return [w * k, h * k];
+    });
+    // centres stacked one after another, then shifted so position f sits in the middle of the screen
+    const C = [0];
+    for (let i = 1; i < dims.length; i++) C[i] = C[i - 1] + (dims[i - 1][1] + dims[i][1]) / 2 + GAP;
+    const lo = Math.floor(f), fr = f - lo;
+    const cf = lo + 1 < C.length ? C[lo] + (C[lo + 1] - C[lo]) * fr : C[lo];
+    const mid = H / 2 + 14;
+    shots.forEach((sh, i) => {
+      const [w, h] = dims[i];
+      const y = mid + C[i] - cf - h / 2;
+      const visible = y + h > -50 && y < H + 50;
+      sh.el.style.visibility = visible ? 'visible' : 'hidden';
+      if (!visible) return;
+      if (!sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; }
+      sh.el.style.width = w + 'px';
+      sh.el.style.height = h + 'px';
+      sh.el.style.transform = `translate(${-w / 2}px, ${y}px)`;
+    });
+    // preload the next two
+    [Math.ceil(f) + 1, Math.ceil(f) + 2].forEach(i => { const sh = shots[i]; if (sh && !sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; } });
+    const c = Math.round(f);
+    if (c !== current) { current = c; renderSeries(filter === 'all' && SERIES.length > 1 ? 'all' : shots[c].p.series); }
   }
-  renderGallery(document.getElementById('gallery-color'), GALLERIES.color);
-  renderGallery(document.getElementById('gallery-bw'), GALLERIES.bw);
+  let queued = false;
+  const schedule = () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; update(); }); } };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', () => {
+    sizeList(); schedule();
+    const n = window.innerWidth <= 760 ? 2 : window.innerWidth <= 1100 ? 3 : 4;
+    if (n !== galleryCols) buildGallery();
+  });
+  document.addEventListener('keydown', e => {
+    if (body.dataset.view !== 'home' || body.dataset.mode !== 'list') return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.min(shots.length - 1, current + 1)); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(Math.max(0, current - 1)); }
+  });
 
-  /* ---------- professional work placeholders ---------- */
+  /* ---------- gallery view ---------- */
+  const grid = document.getElementById('galleryGrid');
+  let galleryCols = 0;
+  function buildGallery() {
+    // spread photos left to right into the shortest column, so numbers read across the page
+    const n = window.innerWidth <= 760 ? 2 : window.innerWidth <= 1100 ? 3 : 4;
+    galleryCols = n;
+    const cols = Array.from({ length: n }, () => ({ h: 0, html: '' }));
+    photos.forEach((p, i) => {
+      const c = cols.reduce((a, b) => (b.h < a.h - 0.01 ? b : a));
+      c.h += p.h / p.w + 0.12;
+      c.html += `<figure data-i="${i}"><img src="${p.src}" width="${p.w}" height="${p.h}" alt="Black and white film photograph ${i + 1}" loading="lazy" decoding="async"><figcaption>(${i + 1})</figcaption></figure>`;
+    });
+    grid.innerHTML = cols.map(c => `<div class="gallery-col">${c.html}</div>`).join('');
+  }
+  grid.addEventListener('click', e => {
+    const fig = e.target.closest('figure'); if (!fig) return;
+    setMode('list'); goTo(+fig.dataset.i, false);
+  });
+
+  const vList = document.getElementById('vList'), vGallery = document.getElementById('vGallery');
+  function setMode(m) {
+    body.dataset.mode = m;
+    vList.setAttribute('aria-pressed', m === 'list');
+    vGallery.setAttribute('aria-pressed', m === 'gallery');
+    list.hidden = m !== 'list';
+    document.getElementById('gallery').hidden = m !== 'gallery';
+    document.documentElement.style.scrollSnapType = m === 'list' ? '' : 'none';
+    window.scrollTo(0, 0);
+    schedule();
+  }
+  vList.addEventListener('click', () => setMode('list'));
+  vGallery.addEventListener('click', () => setMode('gallery'));
+
+  /* ---------- work placeholders ---------- */
   const WORK = [
-    ['Client name', 'Editorial', '2026'], ['Client name', 'Brand campaign', '2025', true],
-    ['Client name', 'Event', '2025'], ['Client name', 'Portraits', '2025'], ['Client name', 'Architecture', '2024'],
-    ['Client name', 'Hospitality', '2024', true], ['Client name', 'Editorial', '2024'],
+    ['Client name', 'Editorial', '2026'], ['Client name', 'Brand campaign', '2025'], ['Client name', 'Event', '2025'],
+    ['Client name', 'Portraits', '2025'], ['Client name', 'Architecture', '2024'], ['Client name', 'Hospitality', '2024'],
   ];
-  document.getElementById('workGrid').innerHTML = WORK.map(([c, k, y, wide]) =>
-    `<figure class="${wide ? 'wide' : ''}"><div class="cell" aria-hidden="true"></div><figcaption><span>${c} — ${k}</span><span>${y}</span></figcaption></figure>`).join('');
-
-  /* ---------- menu ---------- */
-  const menuBtn = document.getElementById('menuBtn');
-  function setMenu(open) {
-    body.classList.toggle('menu-open', open);
-    menuBtn.setAttribute('aria-expanded', open);
-    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-  }
-  menuBtn.addEventListener('click', () => setMenu(!body.classList.contains('menu-open')));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
-  document.getElementById('menu').addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+  document.getElementById('workGrid').innerHTML = WORK.map(([c, k, y]) =>
+    `<figure><div class="ph" aria-hidden="true"></div><figcaption><span>${c} — ${k}</span><span>${y}</span></figcaption></figure>`).join('');
 
   /* ---------- routing ---------- */
-  const VIEWS = ['about', 'work', 'contact'];
+  const PAGES = ['about', 'work', 'contact'];
   function route() {
     const v = location.hash.slice(1);
-    const view = VIEWS.includes(v) ? v : 'home';
+    const view = PAGES.includes(v) ? v : 'home';
     body.dataset.view = view;
     document.getElementById('home').hidden = view !== 'home';
-    VIEWS.forEach(id => document.getElementById(id).hidden = id !== view);
+    PAGES.forEach(id => document.getElementById(id).hidden = id !== view);
+    document.querySelectorAll('.nav a').forEach(a => a.hash === '#' + view ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+    document.documentElement.style.scrollSnapType = view === 'home' && body.dataset.mode === 'list' ? '' : 'none';
     window.scrollTo(0, 0);
-    if (view === 'home' && !introStarted) startIntro();
-    scheduleTone();
+    schedule();
   }
   window.addEventListener('hashchange', route);
-
-  /* ---------- mode switch ---------- */
-  const modes = document.getElementById('modes');
-  const bColor = document.getElementById('modeColor');
-  const bBw = document.getElementById('modeBw');
-  function setMode(mode) {
-    body.dataset.mode = mode;
-    bColor.setAttribute('aria-pressed', mode === 'color');
-    bBw.setAttribute('aria-pressed', mode === 'bw');
-    ['color', 'bw'].forEach(m => {
-      const g = document.getElementById('gallery-' + m);
-      g.hidden = m !== mode;
-      g.classList.remove('fade'); void g.offsetWidth; if (m === mode) g.classList.add('fade');
-    });
-    scheduleTone(); setTimeout(scheduleTone, 750);
-  }
-  bColor.addEventListener('click', () => setMode('color'));
-  bBw.addEventListener('click', () => setMode('bw'));
-
-  /* ---------- button tone: read the brightness of the photo behind each word ---------- */
-  const lum = new Map(); // image url -> { w, h, nw, nh, data } | 'pending' | 'fail'
-  function loadLum(src) {
-    if (lum.has(src)) return lum.get(src);
-    lum.set(src, 'pending');
-    const im = new Image();
-    im.onload = () => {
-      try {
-        const w = 120, h = Math.max(1, Math.round(w * im.naturalHeight / im.naturalWidth));
-        const c = document.createElement('canvas'); c.width = w; c.height = h;
-        const ctx = c.getContext('2d', { willReadFrequently: true });
-        ctx.drawImage(im, 0, 0, w, h);
-        lum.set(src, { w, h, nw: im.naturalWidth, nh: im.naturalHeight, data: ctx.getImageData(0, 0, w, h).data });
-      } catch (_) { lum.set(src, 'fail'); }
-      scheduleTone();
-    };
-    im.onerror = () => lum.set(src, 'fail');
-    im.src = src;
-    return 'pending';
-  }
-  function sampleImg(img, px, py) {
-    const src = img.currentSrc || img.src;
-    if (!src) return null;
-    const e = loadLum(src);
-    if (typeof e !== 'object') return null;
-    const r = img.getBoundingClientRect();
-    const scale = Math.max(r.width / e.nw, r.height / e.nh); // object-fit: cover, centred
-    const ox = (r.width - e.nw * scale) / 2, oy = (r.height - e.nh * scale) / 2;
-    const cx = Math.round((px - r.left - ox) / scale / e.nw * e.w);
-    const cy = Math.round((py - r.top - oy) / scale / e.nh * e.h);
-    let sum = 0, n = 0;
-    for (let y = cy - 2; y <= cy + 2; y++) for (let x = cx - 4; x <= cx + 4; x++) {
-      if (x < 0 || y < 0 || x >= e.w || y >= e.h) continue;
-      const i = (y * e.w + x) * 4;
-      sum += (0.2126 * e.data[i] + 0.7152 * e.data[i + 1] + 0.0722 * e.data[i + 2]) / 255; n++;
-    }
-    return n ? sum / n : null;
-  }
-  function shown(el) {
-    for (let e = el; e && e !== body; e = e.parentElement) if (parseFloat(getComputedStyle(e).opacity) < 0.5) return false;
-    return true;
-  }
-  function toneAt(btn) {
-    const r = btn.getBoundingClientRect();
-    const px = r.left + Math.min(r.width, 60) / 2, py = r.top + r.height / 2;
-    for (const el of document.elementsFromPoint(px, py)) {
-      if (modes.contains(el)) continue;
-      if (el.tagName === 'IMG') {
-        if (!shown(el)) continue;
-        const L = sampleImg(el, px, py);
-        return L !== null && L < 0.5 ? 'dark' : 'light';
-      }
-      return 'light'; // white page or grey empty frame
-    }
-    return 'light';
-  }
-  let toneQueued = false;
-  function scheduleTone() {
-    if (toneQueued) return;
-    toneQueued = true;
-    requestAnimationFrame(() => {
-      toneQueued = false;
-      modes.classList.toggle('scrolled', window.scrollY > 8);
-      [bColor, bBw].forEach(b => b.dataset.tone = toneAt(b));
-    });
-  }
-  window.addEventListener('scroll', scheduleTone, { passive: true });
-  window.addEventListener('resize', scheduleTone);
-  document.addEventListener('load', e => { if (e.target.tagName === 'IMG') scheduleTone(); }, true);
-
-  /* ---------- intro sequence ---------- */
-  const hero = document.getElementById('hero');
-  const seq = document.getElementById('seq');
-  // rapid sequence of photos and grey frames; it stops on the cover for the current set and screen
-  const SEQ_BASE = [BW('R1-02540-0017'), null, IMG(7), IMG(5), null, BW('R1-06987-0019'), IMG(9), null, BW('R1-06986-0032'), BW('15--4630alberto931'), null, IMG(1)];
-  let introStarted = false;
-
-  function preload(list) {
-    return Promise.all([...new Set(list.filter(Boolean))].map(src => new Promise(res => {
-      const i = new Image(); i.onload = i.onerror = res; i.src = src;
-    })));
-  }
-  function show(src) {
-    if (src) { seq.removeAttribute('data-empty'); seq.src = src; } else { seq.setAttribute('data-empty', ''); }
-  }
-  function land() {
-    hero.classList.add('landed');
-    modes.classList.add('show');
-    scheduleTone();
-  }
-  function startIntro() {
-    introStarted = true;
-    const list = SEQ_BASE.concat(coverSrc(body.dataset.mode || 'color'));
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { land(); return; }
-    preload(list).then(() => {
-      let i = 0;
-      const tick = () => {
-        show(list[i]);
-        if (i === list.length - 1) { setTimeout(land, 300); return; }
-        // fast flicker, easing slightly as it approaches the last picture
-        const delay = 90 + Math.max(0, i - list.length + 5) * 35;
-        i++; setTimeout(tick, delay);
-      };
-      tick();
-    });
-  }
 
   /* ---------- contact ---------- */
   document.getElementById('copyBtn').addEventListener('click', e => {
@@ -490,9 +425,9 @@
     note.textContent = 'Prototype only: this form is not connected yet, so nothing was sent. Email the address on the left.';
   });
 
-  setMode('color');
+  buildList(); buildGallery(); renderSeries(SERIES[0]);
   route();
 })();
 </script>
-
-</body></html>
+</body>
+</html>
