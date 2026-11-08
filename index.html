@@ -272,8 +272,8 @@
   const stage = document.getElementById('stage');
   let shots = [];
   const GAP = 26;            // space between photos, px
-  const MIN_SCALE = 0.26;    // size of photos far from the centre
-  const FALLOFF = 0.4;       // how fast photos shrink away from the centre
+  const MIN_SCALE = 0.13;    // size of photos two or more places from the centre
+  const FALLOFF = 0.7;       // how fast photos shrink: next photo = 1 - 0.7 = 30% of the centre one
 
   const vh = () => stage.clientHeight || window.innerHeight;
   const step = () => Math.round(vh() * 0.55);    // scroll distance from one photo to the next
