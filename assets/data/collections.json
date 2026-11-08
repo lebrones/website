@@ -1,0 +1,42 @@
+{
+  "_note": "Collections shown on the right of the site. Each photo file name belongs to one collection. Edit names or move files between lists, then run: python3 tools/build-manifest.py",
+  "Mountains": [
+    "000039000025.webp", "000039000027.webp", "000039000028.webp", "000039000034.webp",
+    "000039000036.webp", "R1-02540-0035.webp"
+  ],
+  "Riviera": [
+    "000039000003.webp", "000039000008 Large 2.webp", "000039000010.webp", "000039000013.webp",
+    "R1-02540-0022.webp"
+  ],
+  "Surf trip": [
+    "R1-02540-0000.webp", "R1-02540-0003.webp", "R1-02540-0009.webp", "R1-02540-0012.webp",
+    "R1-02540-0014.webp", "R1-02540-0015.webp", "R1-02540-0016.webp", "R1-02540-0017.webp",
+    "R1-02540-0019.webp", "R1-02540-0021.webp"
+  ],
+  "The Rock": [
+    "R1-06986-0013.webp", "R1-06986-0016.webp", "R1-06986-0019.webp", "R1-06986-0020.webp",
+    "R1-06986-0021.webp", "R1-06986-0022.webp", "R1-06986-0025.webp", "R1-06986-0027.webp",
+    "R1-06986-0028.webp", "R1-06987-0033.webp", "R1-06987-0035.webp", "color-07.jpg"
+  ],
+  "Summer house": [
+    "R1-06986-0000.webp", "R1-06986-0001.webp", "R1-06986-0002.webp", "R1-06986-0004.webp",
+    "R1-06986-0005.webp", "R1-06986-0007.webp", "R1-06986-0008.webp", "R1-06986-0009.webp",
+    "R1-06986-0010.webp", "R1-06986-0030.webp", "R1-06986-0032.webp", "R1-06986-0033.webp",
+    "R1-06987-0027.webp", "edited.webp"
+  ],
+  "Facades": [
+    "R1-06987-0008.webp", "R1-06987-0011.webp", "R1-06987-0012.webp", "R1-06987-0013.webp",
+    "R1-06987-0014.webp", "R1-06987-0016.webp", "R1-06987-0018.webp", "R1-06987-0019.webp",
+    "R1-06987-0021.webp", "R1-06987-0022.webp", "R1-06987-0023.webp", "R1-06987-0024.webp",
+    "R1-06987-0025.webp", "R1-06987-0026.webp", "R1-06987-0026-2.webp"
+  ],
+  "City": [
+    "1--4630alberto931.webp", "4--4630alberto931.webp", "7--4630alberto931.webp",
+    "10--4630alberto931.webp", "15--4630alberto931.webp", "19--4630alberto931.webp",
+    "20--4630alberto931.webp", "22--4630alberto931.webp", "23--4630alberto931.webp",
+    "24--4630alberto931.webp", "31--4630alberto931.webp", "36--4630alberto931.webp"
+  ],
+  "Travels": [
+    "color-01.jpg", "color-05.jpg", "color-09.jpg"
+  ]
+}

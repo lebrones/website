@@ -16,13 +16,14 @@ File naming: lowercase, hyphens, no spaces, numbered in display order — e.g. `
 
 ## Site
 
-`index.html` is the whole site (based on the Claude prototype). The B&W grid is built
-automatically from `assets/data/photos.js`. After adding or removing photos, regenerate it:
+`index.html` is the whole site. Photos and their collections come from `assets/data/photos.js`,
+which is generated — don't edit it by hand. After adding/removing photos, or after editing
+`assets/data/collections.json` (which photo belongs to which collection), run:
 
 ```bash
 python3 tools/build-manifest.py
 ```
 
-Files listed in `HIDDEN` inside that script stay in the repo but are left off the site.
-`assets/images/prototype-color/` holds the four test colour photos from the prototype until
-the real colour set is uploaded.
+- Black & white photos: `assets/images/projects/black-and-white/`
+- Colour photos: `assets/images/projects/colors/`
+- Files listed in `HIDDEN` inside the script stay in the repo but are left off the site.

@@ -4,154 +4,148 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alberto Bonino — Photography</title>
-<meta name="description" content="Black and white film photography by Alberto Bonino.">
+<meta name="description" content="Film photography by Alberto Bonino, in black and white and colour.">
 <script src="assets/data/photos.js"></script>
 <style>
   :root {
     --paper: #ffffff;
     --ink: #111111;
-    --muted: #a3a3a3;
+    --muted: #a0a0a0;
     --line: #dddddd;
     --empty: #ececec;
     --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
     --pad-l: max(16px, env(safe-area-inset-left, 0px));
     --pad-r: max(16px, env(safe-area-inset-right, 0px));
-    --pad-t: max(16px, env(safe-area-inset-top, 0px));
-    --pad-b: max(16px, env(safe-area-inset-bottom, 0px));
+    --pad-t: max(14px, env(safe-area-inset-top, 0px));
+    --pad-b: max(14px, env(safe-area-inset-bottom, 0px));
     color-scheme: light;
   }
   @media (min-width: 900px) {
-    :root { --pad-l: max(36px, env(safe-area-inset-left, 0px)); --pad-r: max(36px, env(safe-area-inset-right, 0px)); --pad-t: 28px; --pad-b: 28px; }
+    :root { --pad-l: max(36px, env(safe-area-inset-left, 0px)); --pad-r: max(36px, env(safe-area-inset-right, 0px)); --pad-t: 26px; --pad-b: 28px; }
   }
 
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; background: var(--paper); color: var(--ink); }
-  html { scroll-snap-type: y proximity; }
-  body { font-family: var(--font); font-size: 13px; line-height: 1.45; text-transform: uppercase; letter-spacing: .03em; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { font-family: var(--font); font-size: 16px; line-height: 1.4; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; }
-  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-transform: inherit; letter-spacing: inherit; }
+  button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
   :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
   img { display: block; }
 
-  /* ---------- fixed chrome ---------- */
+  /* ---------- top bar: name · List/Gallery · links ---------- */
   .top {
     position: fixed; z-index: 30; inset: 0 0 auto;
-    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    padding: var(--pad-t) var(--pad-r) 12px var(--pad-l);
-    pointer-events: none;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: baseline; gap: 16px;
+    padding: var(--pad-t) var(--pad-r) 14px var(--pad-l);
+    background: var(--paper);
   }
   .top > * { pointer-events: auto; }
-  .brand { font-weight: 700; font-size: 15px; text-decoration: none; letter-spacing: .04em; }
-  .nav { display: flex; gap: 18px; }
-  .nav a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; font-size: 14px; }
+  .brand { font-weight: 700; font-size: 18px; text-decoration: none; justify-self: start; }
+  .views { display: flex; gap: 18px; justify-self: center; }
+  .views button { color: var(--muted); font-size: 17px; }
+  .views button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .views button:hover { color: var(--ink); }
+  .nav { display: flex; gap: 20px; justify-self: end; }
+  .nav a { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; font-size: 17px; }
   .nav a[aria-current="page"] { text-decoration-thickness: 2px; }
   .nav a:hover { color: var(--muted); }
+  body:not([data-view="home"]) .views { visibility: hidden; }
 
-  .series {
-    position: fixed; z-index: 20; left: var(--pad-l); top: 50%; transform: translateY(-50%);
-    display: flex; flex-direction: column; align-items: flex-start; gap: 2px; max-width: 26vw;
+  /* ---------- side lists: tone (left) and collections (right) ---------- */
+  .side {
+    position: fixed; z-index: 20; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 3px; max-width: 24vw;
   }
-  .series button { color: var(--muted); font-size: 14px; text-align: left; transition: color .25s ease, font-size .25s ease; }
-  .series button:hover { color: var(--ink); }
-  .series button.current { color: var(--ink); font-weight: 700; font-size: clamp(20px, 2.4vw, 34px); letter-spacing: -0.01em; line-height: 1.15; margin: 4px 0; }
-
-  .views { position: fixed; z-index: 20; right: var(--pad-r); top: 50%; transform: translateY(-50%); display: flex; gap: 14px; }
-  .views button { color: var(--muted); font-size: 14px; }
-  .views button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-  .views button:hover { color: var(--ink); }
-
-  body:not([data-view="home"]) .series,
-  body:not([data-view="home"]) .views { display: none; }
+  .side.left { left: var(--pad-l); align-items: flex-start; text-align: left; }
+  .side.right { right: var(--pad-r); align-items: flex-end; text-align: right; }
+  .side .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+  .side button { color: var(--muted); font-size: 17px; line-height: 1.3; transition: color .25s ease; }
+  .side button:hover { color: var(--ink); }
+  .side button[aria-pressed="true"] { color: var(--ink); font-weight: 700; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.15; margin: 4px 0; letter-spacing: -0.01em; }
+  body:not([data-view="home"]) .side { display: none; }
 
   /* ---------- list view: one column, the centred photo is largest ---------- */
   .list { position: relative; }
   .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-  .shot { position: absolute; left: 50%; top: 0; margin: 0; cursor: pointer; will-change: transform; }
-  .shot img { width: 100%; height: 100%; object-fit: cover; background: var(--empty); }
-  .shot .num { position: absolute; bottom: -2px; font-size: 11px; letter-spacing: .04em; white-space: nowrap; }
+  .shot { position: absolute; left: 50%; top: 0; margin: 0; cursor: pointer; will-change: transform, width, height; }
+  .shot .pic { width: 100%; height: 100%; overflow: hidden; background: var(--empty); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; will-change: filter, transform; }
+  .shot .num { position: absolute; bottom: -3px; font-size: 13px; white-space: nowrap; transition: opacity .3s ease; }
   .shot.l .num { right: calc(100% + 16px); }
   .shot.r .num { left: calc(100% + 16px); }
-  .snap { position: absolute; left: 0; width: 1px; height: 1px; scroll-snap-align: start; pointer-events: none; }
+  .empty-note { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); }
 
   /* ---------- gallery view ---------- */
-  /* Gallery: rows of at most two photos. Each photo's flex-grow is its aspect ratio, so both
-     photos in a row come out the same height with nothing cropped. The grid stops growing at
-     1920px; a row is also capped so its photos are never taller than 85% of the screen. Spacing
-     is fluid (clamp) instead of fixed breakpoints, so it scales smoothly between phone and 4K;
-     the only hard breakpoint is 600px, where rows stack to one photo. */
-  .gallery { padding: calc(var(--pad-t) + 72px) clamp(16px, 12.5vw, 200px) 120px; }
+  /* Rows of at most two photos. Each photo's flex-grow is its aspect ratio, so both photos in a
+     row come out the same height with nothing cropped. The grid stops growing at 1920px, and a
+     row is capped so its photos are never taller than 85% of the screen. Spacing is fluid
+     (clamp) rather than fixed breakpoints; the one hard breakpoint is 600px, where rows stack. */
+  .gallery { padding: calc(var(--pad-t) + 76px) clamp(16px, 14vw, 260px) 120px; }
   .gallery-grid { --g: clamp(12px, 1.6vw, 32px); display: flex; flex-direction: column; align-items: center; gap: calc(var(--g) * 1.6); max-width: 1920px; margin: 0 auto; }
   .gallery-row { display: flex; gap: var(--g); width: 100%; max-width: min(100%, calc(85svh * var(--a) + var(--g))); }
   .gallery-row.single { max-width: min(100%, calc(85svh * var(--a))); }
   .gallery figure { margin: 0; cursor: pointer; flex: var(--r) 1 0; min-width: 0; }
-  body[data-mode="gallery"] .series { display: none; }
-  .gallery img { width: 100%; height: auto; aspect-ratio: var(--r); background: var(--empty); }
-  .gallery figcaption { margin-top: 6px; font-size: 11px; }
+  .gallery img { width: 100%; height: auto; aspect-ratio: var(--r); background: var(--empty); transition: opacity .2s ease; }
+  .gallery figcaption { margin-top: 6px; font-size: 13px; }
   .gallery figure:hover img { opacity: .85; }
 
   /* ---------- inner pages ---------- */
   .page { min-height: 100vh; padding: calc(var(--pad-t) + 110px) var(--pad-r) 96px var(--pad-l); }
   .page[hidden], main[hidden], .list[hidden], .gallery[hidden] { display: none !important; }
-  .eyebrow { font-size: 11px; color: var(--muted); margin: 0 0 18px; }
-  .page h1 { font-size: clamp(28px, 5vw, 64px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; margin: 0 0 48px; }
-  .page p, .page dd, .page input, .page textarea, .page .mail { text-transform: none; letter-spacing: 0; }
+  .eyebrow { font-size: 13px; color: var(--muted); margin: 0 0 18px; }
+  .page h1 { font-size: clamp(32px, 5vw, 68px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin: 0 0 48px; }
   .about { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(24px, 5vw, 80px); align-items: start; max-width: 1200px; }
   .about .portrait { aspect-ratio: 3 / 4; background: var(--empty); max-width: 420px; }
-  .about .portrait img { width: 100%; height: 100%; object-fit: cover; }
-  .about p { font-size: 15px; line-height: 1.6; max-width: 36em; margin: 0 0 1em; }
-  .facts { margin-top: 40px; display: grid; grid-template-columns: max-content 1fr; gap: 10px 32px; font-size: 12px; max-width: 36em; }
+  .about p { font-size: 18px; line-height: 1.55; max-width: 34em; margin: 0 0 1em; }
+  .facts { margin-top: 40px; display: grid; grid-template-columns: max-content 1fr; gap: 10px 32px; font-size: 15px; max-width: 36em; }
   .facts dt { color: var(--muted); }
   .facts dd { margin: 0; }
-
   .work-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 20px; max-width: 1400px; }
   .work-grid figure { margin: 0; }
   .work-grid .ph { aspect-ratio: 3 / 2; background: var(--empty); }
-  .work-grid figcaption { margin-top: 8px; font-size: 11px; display: flex; justify-content: space-between; gap: 12px; }
+  .work-grid figcaption { margin-top: 8px; font-size: 14px; display: flex; justify-content: space-between; gap: 12px; }
   .work-grid figcaption span:last-child { color: var(--muted); }
-
   .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); max-width: 1100px; }
-  .contact .mail { font-size: clamp(18px, 2.4vw, 28px); user-select: all; word-break: break-all; }
-  .copy { margin-top: 14px; font-size: 11px; color: var(--muted); }
+  .contact .mail { font-size: clamp(20px, 2.4vw, 30px); user-select: all; word-break: break-all; }
+  .copy { margin-top: 14px; font-size: 14px; color: var(--muted); }
   .copy:hover { color: var(--ink); }
   form { display: flex; flex-direction: column; gap: 22px; }
-  label { display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--muted); }
-  input, textarea { font: inherit; font-size: 15px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0; border-radius: 0; }
+  label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--muted); }
+  input, textarea { font: inherit; font-size: 17px; color: var(--ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 8px 0; border-radius: 0; }
   input:focus, textarea:focus { outline: none; border-bottom-color: var(--ink); }
   textarea { resize: vertical; min-height: 110px; }
-  .send { align-self: flex-start; border: 1px solid var(--ink); padding: 12px 22px; font-size: 12px; }
+  .send { align-self: flex-start; border: 1px solid var(--ink); padding: 12px 22px; font-size: 15px; }
   .send:hover { background: var(--ink); color: var(--paper); }
-  .note { font-size: 12px; min-height: 1.4em; margin: 0; }
+  .note { font-size: 14px; min-height: 1.4em; margin: 0; }
 
-  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 24px var(--pad-r) calc(var(--pad-b) + 8px) var(--pad-l); font-size: 11px; color: var(--muted); border-top: 1px solid var(--line); }
+  footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 24px var(--pad-r) calc(var(--pad-b) + 8px) var(--pad-l); font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
   body[data-view="home"][data-mode="list"] footer { display: none; }
 
   /* ---------- phones ---------- */
   @media (max-width: 760px) {
-    .nav { gap: 12px; }
-    .nav a { font-size: 12px; }
-    .brand { font-size: 13px; }
-    .series { top: auto; bottom: var(--pad-b); transform: none; max-width: 60vw; z-index: 25; }
-    .series button:not(.current) { display: none; }
-    .series button.current { font-size: 16px; margin: 0; }
-    .series.open button { display: block; }
-    .views { top: auto; bottom: var(--pad-b); transform: none; z-index: 25; }
-    .views button { font-size: 12px; }
+    .top { grid-template-columns: 1fr auto; row-gap: 10px; background: var(--paper); padding-bottom: 12px; }
+    .brand { font-size: 16px; }
+    .nav { gap: 14px; }
+    .nav a { font-size: 15px; }
+    .views { grid-column: 1 / -1; grid-row: 2; }
+    .views button { font-size: 15px; }
+    body:not([data-view="home"]) .views { display: none; }
+    /* tone and collection sit in a bar at the bottom; tap to open the list */
+    .side { top: auto; bottom: var(--pad-b); transform: none; max-width: 48vw; z-index: 25; gap: 6px; }
+    .side .label { display: none; }
+    .side button:not([aria-pressed="true"]) { display: none; }
+    .side.open button { display: block; }
+    .side.open { background: var(--paper); padding: 12px 0 0; }
+    .side button[aria-pressed="true"] { font-size: 18px; margin: 0; }
+    body[data-view="home"]::after { content: ""; position: fixed; z-index: 22; left: 0; right: 0; bottom: 0; height: calc(var(--pad-b) + 40px); background: var(--paper); }
     .shot .num { display: none; }
-    .top { background: var(--paper); padding-bottom: 14px; }
-    body[data-view="home"]::after { content: ""; position: fixed; z-index: 22; left: 0; right: 0; bottom: 0; height: calc(var(--pad-b) + 34px); background: var(--paper); }
-    .gallery { padding-inline: var(--pad-l) var(--pad-r); }
+    .gallery { padding: calc(var(--pad-t) + 96px) var(--pad-r) 96px var(--pad-l); }
     .about, .contact { grid-template-columns: 1fr; }
     .work-grid { grid-template-columns: 1fr; }
   }
-
   @media (max-width: 600px) {
     .gallery-row { flex-direction: column; max-width: 100%; }
     .gallery figure { flex: none; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-snap-type: none; }
-    *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
   }
 </style>
 </head>
@@ -159,6 +153,10 @@
 
 <header class="top">
   <a class="brand" href="#">Alberto Bonino</a>
+  <div class="views" role="group" aria-label="View">
+    <button id="vList" aria-pressed="true">List</button>
+    <button id="vGallery" aria-pressed="false">Gallery</button>
+  </div>
   <nav class="nav" aria-label="Main">
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
@@ -166,12 +164,8 @@
   </nav>
 </header>
 
-<aside class="series" id="series" aria-label="Series"></aside>
-
-<div class="views" role="group" aria-label="View">
-  <button id="vList" aria-pressed="true">List</button>
-  <button id="vGallery" aria-pressed="false">Gallery</button>
-</div>
+<aside class="side left" id="tones" aria-label="Black and white or colour"></aside>
+<aside class="side right" id="collections" aria-label="Collections"></aside>
 
 <!-- ============ HOME ============ -->
 <main id="home">
@@ -188,9 +182,9 @@
   <p class="eyebrow">About</p>
   <h1>Alberto Bonino</h1>
   <div class="about">
-    <div class="portrait" id="portrait"></div>
+    <div class="portrait" role="img" aria-label="Portrait placeholder"></div>
     <div>
-      <p>I photograph on 35mm film, mostly in black and white. Most of my pictures start with a single figure or object and a lot of empty space around it: a surfer leaving the water, a lighthouse on a dark coast, a figure floating in grey water.</p>
+      <p>I photograph on 35mm film, in black and white and in colour. Most of my pictures start with a single figure or object and a lot of empty space around it: a surfer leaving the water, a lighthouse on a dark coast, a figure floating in grey water.</p>
       <p>Replace this text with your own story: where you are based, how you started, what you look for when you press the shutter.</p>
       <dl class="facts">
         <dt>Based in</dt><dd>City, Country</dd>
@@ -232,160 +226,189 @@
 
 <footer>
   <span>© 2026 Alberto Bonino</span>
-  <span>Black and white, 35mm film</span>
+  <span>35mm film</span>
 </footer>
 
 <script>
 (function () {
   const body = document.body;
 
-  /* ---------- photos ----------
-     assets/data/photos.js holds one list per series (generated by tools/build-manifest.py).
-     LABELS gives each series the name shown in the left-hand list. */
-  const LABELS = { bw: 'Black & White' };
-  const DATA = window.PHOTOS || {};
-  const SERIES = Object.keys(DATA).filter(k => DATA[k].length);
-  const ALL = SERIES.flatMap(k => DATA[k].map(p => ({ ...p, series: k })));
-  let filter = 'all';
-  let photos = ALL;
+  /* ---------- data (assets/data/photos.js, built by tools/build-manifest.py) ---------- */
+  const ALL = window.PHOTOS || [];
+  const TONES = window.TONES || { bw: 'Black & white' };
+  const COLLECTIONS = window.COLLECTIONS || [];
+  let tone = 'bw';
+  let collection = 'all';
+  let photos = [];
 
-  /* ---------- series list ---------- */
-  const seriesEl = document.getElementById('series');
-  function renderSeries(currentKey) {
-    const items = [['all', 'Everything'], ...SERIES.map(k => [k, LABELS[k] || k])];
-    seriesEl.innerHTML = items.map(([k, label]) =>
-      `<button data-k="${k}" class="${k === currentKey ? 'current' : ''}" aria-pressed="${k === filter}">${label}</button>`).join('');
+  function applyFilter() {
+    const inTone = ALL.filter(p => p.tone === tone);
+    if (collection !== 'all' && !inTone.some(p => p.collection === collection)) collection = 'all';
+    photos = collection === 'all' ? inTone : inTone.filter(p => p.collection === collection);
   }
-  seriesEl.addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b) return;
-    if (window.matchMedia('(max-width: 760px)').matches && !seriesEl.classList.contains('open')) { seriesEl.classList.add('open'); return; }
-    seriesEl.classList.remove('open');
-    filter = b.dataset.k;
-    photos = filter === 'all' ? ALL : ALL.filter(p => p.series === filter);
-    buildList(); buildGallery();
-    window.scrollTo(0, 0);
-    shown = null; schedule();
-  });
+
+  /* ---------- side lists ---------- */
+  const tonesEl = document.getElementById('tones');
+  const collEl = document.getElementById('collections');
+  function renderSides() {
+    tonesEl.innerHTML = Object.entries(TONES)
+      .filter(([k]) => ALL.some(p => p.tone === k))
+      .map(([k, label]) => `<button data-k="${k}" aria-pressed="${k === tone}">${label}</button>`).join('');
+    const available = COLLECTIONS.filter(c => ALL.some(p => p.tone === tone && p.collection === c));
+    collEl.innerHTML = `<span class="label">Collections</span>` +
+      [['all', 'All'], ...available.map(c => [c, c])]
+        .map(([k, label]) => `<button data-k="${k}" aria-pressed="${k === collection}">${label}</button>`).join('');
+  }
+  function sideClick(el, set) {
+    el.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b) return;
+      const phone = window.matchMedia('(max-width: 760px)').matches;
+      if (phone && !el.classList.contains('open')) { el.classList.add('open'); return; }
+      el.classList.remove('open');
+      set(b.dataset.k);
+      applyFilter(); renderSides(); buildList(); buildGallery();
+      window.scrollTo(0, 0);
+      shown = null; schedule();
+    });
+  }
+  sideClick(tonesEl, k => { tone = k; });
+  sideClick(collEl, k => { collection = k; });
 
   /* ---------- list view ---------- */
   const list = document.getElementById('list');
   const stage = document.getElementById('stage');
   let shots = [];
   const GAP = 26;            // space between photos, px
-  const MIN_SCALE = 0.13;    // size of photos two or more places from the centre
-  const FALLOFF = 0.7;       // how fast photos shrink: next photo = 1 - 0.7 = 30% of the centre one
+  const NEXT = 0.30;         // size of the photos just above and below, relative to the centre one
+  const FAR = 0.13;          // size of photos two or more places away
+  const BLUR = 14;           // blur (px) on photos that are not in the centre
+  const EASE = 0.06;         // 0..1 per frame: lower = smoother, slower glide
 
   const vh = () => stage.clientHeight || window.innerHeight;
   const step = () => Math.round(vh() * 0.55);    // scroll distance from one photo to the next
 
   function buildList() {
     stage.innerHTML = '';
-    list.querySelectorAll('.snap').forEach(s => s.remove());
     shots = photos.map((p, i) => {
       const f = document.createElement('figure');
       f.className = 'shot ' + (i % 2 ? 'r' : 'l');
-      f.innerHTML = `<img alt="Black and white film photograph ${i + 1}" decoding="async"><span class="num">(${i + 1})</span>`;
+      const alt = p.tone === 'bw' ? 'Black and white film photograph' : 'Colour film photograph';
+      f.innerHTML = `<div class="pic"><img alt="${alt}${p.collection ? ', ' + p.collection : ''}" decoding="async"></div><span class="num">(${i + 1})</span>`;
       f.addEventListener('click', () => goTo(i));
       stage.appendChild(f);
-      return { el: f, img: f.querySelector('img'), p, loaded: false };
+      return { el: f, img: f.querySelector('img'), num: f.querySelector('.num'), p, loaded: false };
     });
+    if (!shots.length) stage.innerHTML = '<p class="empty-note">No photos here yet.</p>';
     sizeList();
   }
   function sizeList() {
-    const s = step();
-    list.style.height = `calc(${(shots.length - 1) * s}px + 100svh)`;
-    list.querySelectorAll('.snap').forEach(x => x.remove());
-    shots.forEach((_, i) => {
-      const m = document.createElement('i'); m.className = 'snap'; m.style.top = (i * s) + 'px'; list.appendChild(m);
-    });
+    list.style.height = `calc(${Math.max(0, shots.length - 1) * step()}px + 100svh)`;
   }
   function bigSize(p) {
-    // largest size for the centred photo: fits under the header, and never wider than the centre column
+    // the centred photo: fits under the top bar and never wider than the centre column
     const W = window.innerWidth, H = vh();
     const phone = W <= 760;
-    const maxH = H - (phone ? 150 : 150);
+    const maxH = H - (phone ? 190 : 160);
     const maxW = phone ? W - 32 : Math.min(W * 0.5, 1000);
     const a = p.w / p.h;
     const h = Math.min(maxH, maxW / a);
     return [h * a, h];
   }
-  function goTo(i, smooth = true) {
-    window.scrollTo({ top: list.offsetTop + i * step(), behavior: smooth ? 'smooth' : 'auto' });
+  // size as a function of distance from the centre: 1 at the centre, NEXT at one place away,
+  // FAR beyond; smoothstep in between so the growth eases in and out
+  const smooth = t => t * t * (3 - 2 * t);
+  function scaleAt(d) {
+    if (d <= 1) return 1 + (NEXT - 1) * smooth(d);
+    if (d <= 2) return NEXT + (FAR - NEXT) * smooth(d - 1);
+    return FAR;
+  }
+  const listTop = () => list.getBoundingClientRect().top + window.scrollY;
+  function goTo(i, smoothScroll = true) {
+    window.scrollTo({ top: listTop() + i * step(), behavior: smoothScroll ? 'smooth' : 'auto' });
   }
 
-  let current = -1;
-  let shown = null;                 // position currently drawn (eases toward the scroll position)
-  const EASE = 0.12;                // 0..1, lower = smoother and slower
+  /* The drawn position ("shown") glides toward the scroll position instead of jumping with it,
+     so each wheel click or swipe becomes one continuous movement. */
+  let shown = null, lastT = 0;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   function target() {
-    return Math.min(shots.length - 1, Math.max(0, (window.scrollY - list.offsetTop) / step()));
+    return Math.min(Math.max(0, shots.length - 1), Math.max(0, (window.scrollY - listTop()) / step()));
   }
-  function update() {
+  function update(now) {
     if (body.dataset.view !== 'home' || body.dataset.mode !== 'list' || !shots.length) return false;
     const t = target();
+    const dt = lastT ? Math.min(64, now - lastT) : 16.7; lastT = now;
     if (shown === null || reduceMotion.matches) shown = t;
-    else shown += (t - shown) * EASE;
-    const settled = Math.abs(t - shown) < 0.0015;
+    else shown += (t - shown) * (1 - Math.pow(1 - EASE, dt / 16.7));   // same feel at 60Hz and 120Hz
+    const settled = Math.abs(t - shown) < 0.0008;
     if (settled) shown = t;
     draw(shown);
     return !settled;
   }
   function draw(f) {
     const H = vh();
-    // size of every photo for this scroll position
     const dims = shots.map((sh, i) => {
-      const d = Math.abs(i - f);
-      const k = Math.max(MIN_SCALE, 1 - FALLOFF * d);
+      const k = scaleAt(Math.abs(i - f));
       const [w, h] = bigSize(sh.p);
       return [w * k, h * k];
     });
-    // centres stacked one after another, then shifted so position f sits in the middle of the screen
     const C = [0];
     for (let i = 1; i < dims.length; i++) C[i] = C[i - 1] + (dims[i - 1][1] + dims[i][1]) / 2 + GAP;
     const lo = Math.floor(f), fr = f - lo;
     const cf = lo + 1 < C.length ? C[lo] + (C[lo + 1] - C[lo]) * fr : C[lo];
-    const mid = H / 2 + 14;
+    const mid = H / 2 + 16;
     shots.forEach((sh, i) => {
       const [w, h] = dims[i];
       const y = mid + C[i] - cf - h / 2;
-      const visible = y + h > -50 && y < H + 50;
+      const visible = y + h > -60 && y < H + 60;
       sh.el.style.visibility = visible ? 'visible' : 'hidden';
       if (!visible) return;
       if (!sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; }
       sh.el.style.width = w + 'px';
       sh.el.style.height = h + 'px';
-      sh.el.style.transform = `translate(${-w / 2}px, ${y}px)`;
+      sh.el.style.transform = `translate3d(${-w / 2}px, ${y}px, 0)`;
+      // blur fades out as the photo reaches the centre
+      const d = Math.min(1, Math.abs(i - f));
+      const b = BLUR * smooth(d);
+      sh.img.style.filter = b > 0.05 ? `blur(${b.toFixed(2)}px)` : 'none';
+      sh.img.style.transform = b > 0.05 ? `scale(${(1 + b / 60).toFixed(3)})` : 'none';   // hides soft edges
+      sh.num.style.opacity = d < 0.5 ? 1 : 0.35;
     });
-    // preload the next two
     [Math.ceil(f) + 1, Math.ceil(f) + 2].forEach(i => { const sh = shots[i]; if (sh && !sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; } });
-    const c = Math.round(f);
-    if (c !== current) { current = c; renderSeries(filter === 'all' && SERIES.length > 1 ? 'all' : shots[c].p.series); }
   }
   let running = false;
-  function loop() { if (update()) requestAnimationFrame(loop); else running = false; }
+  function loop(now) { if (update(now)) requestAnimationFrame(loop); else { running = false; lastT = 0; } }
   const schedule = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
-  window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', () => {
-    sizeList(); schedule();
-  });
+
+  // after scrolling stops, glide to the nearest photo so one always ends up centred
+  let idle;
+  window.addEventListener('scroll', () => {
+    schedule();
+    clearTimeout(idle);
+    if (body.dataset.view === 'home' && body.dataset.mode === 'list') idle = setTimeout(() => {
+      const t = target(), n = Math.round(t);
+      if (Math.abs(t - n) > 0.02) goTo(n);
+    }, 160);
+  }, { passive: true });
+  window.addEventListener('resize', () => { sizeList(); schedule(); });
   document.addEventListener('keydown', e => {
     if (body.dataset.view !== 'home' || body.dataset.mode !== 'list') return;
-    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.min(shots.length - 1, current + 1)); }
-    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(Math.max(0, current - 1)); }
+    const c = Math.round(target());
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(Math.min(shots.length - 1, c + 1)); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(Math.max(0, c - 1)); }
   });
 
   /* ---------- gallery view ---------- */
   const grid = document.getElementById('galleryGrid');
   function buildGallery() {
-    // pairs of photos, in order; a last odd photo gets a row of its own
     let html = '';
     for (let i = 0; i < photos.length; i += 2) {
       const pair = photos.slice(i, i + 2);
       const a = pair.reduce((t, p) => t + p.w / p.h, 0);
       html += `<div class="gallery-row${pair.length === 1 ? ' single' : ''}" style="--a:${a.toFixed(4)}">` + pair.map((p, k) =>
-        `<figure data-i="${i + k}" style="--r:${(p.w / p.h).toFixed(4)}"><img src="${p.src}" width="${p.w}" height="${p.h}" alt="Black and white film photograph ${i + k + 1}" loading="lazy" decoding="async"><figcaption>(${i + k + 1})</figcaption></figure>`).join('') + '</div>';
+        `<figure data-i="${i + k}" style="--r:${(p.w / p.h).toFixed(4)}"><img src="${p.src}" width="${p.w}" height="${p.h}" alt="${p.tone === 'bw' ? 'Black and white' : 'Colour'} film photograph" loading="lazy" decoding="async"><figcaption>(${i + k + 1})</figcaption></figure>`).join('') + '</div>';
     }
-    grid.innerHTML = html;
+    grid.innerHTML = html || '<p class="eyebrow">No photos here yet.</p>';
   }
   grid.addEventListener('click', e => {
     const fig = e.target.closest('figure'); if (!fig) return;
@@ -399,9 +422,8 @@
     vGallery.setAttribute('aria-pressed', m === 'gallery');
     list.hidden = m !== 'list';
     document.getElementById('gallery').hidden = m !== 'gallery';
-    document.documentElement.style.scrollSnapType = m === 'list' ? '' : 'none';
     window.scrollTo(0, 0);
-    schedule();
+    shown = null; schedule();
   }
   vList.addEventListener('click', () => setMode('list'));
   vGallery.addEventListener('click', () => setMode('gallery'));
@@ -423,9 +445,8 @@
     document.getElementById('home').hidden = view !== 'home';
     PAGES.forEach(id => document.getElementById(id).hidden = id !== view);
     document.querySelectorAll('.nav a').forEach(a => a.hash === '#' + view ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
-    document.documentElement.style.scrollSnapType = view === 'home' && body.dataset.mode === 'list' ? '' : 'none';
     window.scrollTo(0, 0);
-    schedule();
+    shown = null; schedule();
   }
   window.addEventListener('hashchange', route);
 
@@ -443,7 +464,7 @@
     note.textContent = 'Prototype only: this form is not connected yet, so nothing was sent. Email the address on the left.';
   });
 
-  buildList(); buildGallery(); renderSeries(SERIES[0]);
+  applyFilter(); renderSides(); buildList(); buildGallery();
   route();
 })();
 </script>
