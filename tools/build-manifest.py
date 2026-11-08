@@ -44,6 +44,13 @@ with open(os.path.join(ROOT, "assets/data/photos.js"), "w") as fh:
     fh.write("window.COLLECTIONS = " + json.dumps(names) + ";\n")
     fh.write("window.PHOTOS = " + json.dumps(photos, indent=1) + ";\n")
 
+# bump the ?v= number in index.html so browsers fetch the new photos.js
+import re, time
+ix = os.path.join(ROOT, "index.html")
+html = open(ix).read()
+html = re.sub(r'photos\.js\?v=[0-9]+', f'photos.js?v={int(time.time())}', html)
+open(ix, "w").write(html)
+
 by = {}
 for p in photos:
     by.setdefault((p["tone"], p["collection"]), 0)

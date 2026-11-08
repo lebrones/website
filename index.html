@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alberto Bonino — Photography</title>
 <meta name="description" content="Film photography by Alberto Bonino, in black and white and colour.">
-<script src="assets/data/photos.js"></script>
+<script src="assets/data/photos.js?v=1794176042"></script>
 <style>
   :root {
     --paper: #ffffff;
@@ -26,6 +26,7 @@
 
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; background: var(--paper); color: var(--ink); }
+  html { overflow-x: clip; }
   body { font-family: var(--font); font-size: 16px; line-height: 1.4; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
   a { color: inherit; }
   button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
@@ -234,7 +235,10 @@
   const body = document.body;
 
   /* ---------- data (assets/data/photos.js, built by tools/build-manifest.py) ---------- */
-  const ALL = window.PHOTOS || [];
+  // accept the current list format and the older { bw: [...] } format (from a cached photos.js)
+  const RAW = window.PHOTOS || [];
+  const ALL = Array.isArray(RAW) ? RAW
+    : Object.entries(RAW).flatMap(([t, list]) => list.map(p => ({ ...p, tone: t, collection: null })));
   const TONES = window.TONES || { bw: 'Black & white' };
   const COLLECTIONS = window.COLLECTIONS || [];
   let tone = 'bw';
