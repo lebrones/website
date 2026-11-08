@@ -23,6 +23,15 @@
     --pad-r: max(16px, env(safe-area-inset-right, 0px));
     --top-bar: calc(60px + env(safe-area-inset-top, 0px));
     --low-bar: calc(82px + env(safe-area-inset-bottom, 0px));
+    /* Content width cap: two portrait (2:3) photos side by side must fit on screen in full,
+       below the header with a small margin. Height available = 100svh - top bar - 24px;
+       each portrait is 2/3 of that wide, so two of them plus the gap give the cap. */
+    --fit-h: calc(100vh - var(--top-bar) - 24px);
+    --fit-h: calc(100svh - var(--top-bar) - 24px);
+    --maxw: calc(var(--fit-h) * 4 / 3 + var(--gap));
+    /* left/right edge of the centred content column */
+    --edge-l: max(var(--pad-l), calc((100% - var(--maxw)) / 2));
+    --edge-r: max(var(--pad-r), calc((100% - var(--maxw)) / 2));
     color-scheme: light;
   }
   @media (min-width: 900px) { :root { --gap: 16px; --pad-l: max(28px, env(safe-area-inset-left, 0px)); --pad-r: max(28px, env(safe-area-inset-right, 0px)); } }
@@ -72,7 +81,7 @@
   /* ---------- cover ---------- */
   .hero { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--paper); }
   .frame {
-    position: absolute; left: var(--pad-l); right: var(--pad-r); top: var(--top-bar); bottom: var(--low-bar);
+    position: absolute; left: var(--edge-l); right: var(--edge-r); top: var(--top-bar); bottom: var(--low-bar);
     background: var(--empty); overflow: hidden;
   }
   .frame img, .frame picture { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -85,7 +94,7 @@
   /* ---------- COLORS / B&W ---------- */
   .modes {
     position: fixed; z-index: 40;
-    left: var(--pad-l); bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    left: max(var(--pad-l), calc((100vw - var(--maxw)) / 2)); bottom: calc(24px + env(safe-area-inset-bottom, 0px));
     display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
     opacity: 0; transform: translateY(8px); pointer-events: none;
     transition: opacity .6s ease, transform .6s ease;
@@ -105,16 +114,16 @@
   .gallery[hidden] { display: none !important; }
   .gallery.fade { animation: fade .6s ease both; }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
-  .row { display: grid; gap: var(--gap); padding-left: var(--pad-l); padding-right: var(--pad-r); }
+  .row { display: grid; gap: var(--gap); padding-left: var(--edge-l); padding-right: var(--edge-r); }
   .row.two { grid-template-columns: repeat(2, 1fr); }
   .row.three { grid-template-columns: repeat(3, 1fr); }
-  .row.full { padding: 0; margin-block: calc(var(--gap) * 3); }
+  .row.full { margin-block: calc(var(--gap) * 3); }
   .cell { aspect-ratio: 3 / 4; max-width: 100%; background: var(--empty); overflow: hidden; }
-  .row.full .cell, .row.full .cell.land { aspect-ratio: auto; height: 100vh; height: 100svh; width: 100%; }
+  .row.full .cell { aspect-ratio: 3 / 2; width: 100%; }
+  .row.full .cell.port { aspect-ratio: 2 / 3; height: var(--fit-h); width: auto; justify-self: center; }
   .cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .cell.land { aspect-ratio: 3 / 2; }
   .cell.port { aspect-ratio: 2 / 3; }
-  @media (max-width: 899px) { .row.full .cell { height: auto; aspect-ratio: 3 / 2; } }
   @media (max-width: 560px) {
     .row.three { grid-template-columns: 1fr; }
   }
