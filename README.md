@@ -3,18 +3,13 @@ website-alberto-bonino
 
 ## Assets
 
-Website images live in `assets/images/`, grouped by section:
+Photos are WebP, exported with the grain-preserving settings (long edge 3000px, quality 86).
 
 | Folder | Contents |
 |---|---|
-| `hero/` | Large banner / homepage images |
-| `rooms/` | Bedrooms, suites, bathrooms |
-| `restaurant/` | Dining room, dishes, wine |
-| `garden/` | Outdoor spaces, pool, views |
-| `events/` | Weddings, private events, setups |
-| `team/` | People and portraits |
-| `misc/` | Anything else |
+| `assets/images/cover/` | Full-screen cover / homepage hero images |
+| `assets/images/projects/` | One subfolder per series, e.g. `projects/surf/`, `projects/architecture/` |
+| `assets/images/about/` | Portrait and images for the About page |
+| `assets/logo/` | The "ab" logo (SVG preferred) |
 
-Logos go in `assets/logo/`.
-
-File naming: lowercase, hyphens, no spaces — e.g. `rooms-suite-01.jpg`.
+File naming: lowercase, hyphens, no spaces, numbered in display order — e.g. `projects/surf/surf-01.webp`.
