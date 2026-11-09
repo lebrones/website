@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alberto Bonino — Photography</title>
 <meta name="description" content="Film photography by Alberto Bonino, in black and white and colour.">
-<script src="assets/data/photos.js?v=1794176042"></script>
+<script src="assets/data/photos.js?v=1794256381"></script>
 <style>
   :root {
     --paper: #ffffff;
@@ -41,13 +41,14 @@
     background: var(--paper);
   }
   .top > * { pointer-events: auto; }
-  .brand { font-weight: 700; font-size: 18px; text-decoration: none; justify-self: start; }
+  .brand, .views button, .nav a { font-size: 17px; font-weight: 400; }
+  .brand { text-decoration: none; justify-self: start; }
   .views { display: flex; gap: 18px; justify-self: center; }
-  .views button { color: var(--muted); font-size: 17px; }
-  .views button[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .views button { color: var(--muted); }
+  .views button[aria-pressed="true"] { color: var(--ink); }
   .views button:hover { color: var(--ink); }
   .nav { display: flex; gap: 20px; justify-self: end; }
-  .nav a { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; font-size: 17px; }
+  .nav a { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
   .nav a[aria-current="page"] { text-decoration-thickness: 2px; }
   .nav a:hover { color: var(--muted); }
   body:not([data-view="home"]) .views { visibility: hidden; }
@@ -59,21 +60,18 @@
   }
   .side.left { left: var(--pad-l); align-items: flex-start; text-align: left; }
   .side.right { right: var(--pad-r); align-items: flex-end; text-align: right; }
-  .side .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
   .side button { color: var(--muted); font-size: 17px; line-height: 1.3; transition: color .25s ease; }
   .side button:hover { color: var(--ink); }
-  .side button[aria-pressed="true"] { color: var(--ink); font-weight: 700; font-size: clamp(22px, 2.3vw, 34px); line-height: 1.15; margin: 4px 0; letter-spacing: -0.01em; }
+  .side button[aria-pressed="true"] { color: var(--ink); font-weight: 500; font-size: clamp(19px, 1.6vw, 24px); line-height: 1.2; margin: 3px 0; }
   body:not([data-view="home"]) .side { display: none; }
 
   /* ---------- list view: one column, the centred photo is largest ---------- */
   .list { position: relative; }
   .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-  .shot { position: absolute; left: 50%; top: 0; margin: 0; cursor: pointer; will-change: transform, width, height; }
+  .shot { position: absolute; left: 50%; top: 0; margin: 0; cursor: pointer; transform-origin: 0 0; will-change: transform; backface-visibility: hidden; }
   .shot .pic { width: 100%; height: 100%; overflow: hidden; background: var(--empty); }
   .shot img { width: 100%; height: 100%; object-fit: cover; }
-  .shot .num { position: absolute; bottom: -3px; font-size: 13px; white-space: nowrap; }
-  .shot.l .num { right: calc(100% + 16px); }
-  .shot.r .num { left: calc(100% + 16px); }
+  .num { position: absolute; left: 50%; top: 0; font-size: 13px; white-space: nowrap; color: var(--muted); will-change: transform; }
   .snap { position: absolute; left: 0; width: 1px; height: 1px; scroll-snap-align: start; pointer-events: none; }
   .empty-note { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); }
 
@@ -82,13 +80,16 @@
      row come out the same height with nothing cropped. The grid stops growing at 1920px, and a
      row is capped so its photos are never taller than 85% of the screen. Spacing is fluid
      (clamp) rather than fixed breakpoints; the one hard breakpoint is 600px, where rows stack. */
-  .gallery { padding: calc(var(--pad-t) + 76px) clamp(16px, 14vw, 260px) 120px; }
-  .gallery-grid { --g: clamp(12px, 1.6vw, 32px); display: flex; flex-direction: column; align-items: center; gap: calc(var(--g) * 1.6); max-width: 1920px; margin: 0 auto; }
+  .gallery { padding: calc(var(--pad-t) + 76px) clamp(16px, 20vw, 400px) 120px; }
+  .gallery-grid { --g: clamp(12px, 1.4vw, 24px); display: flex; flex-direction: column; align-items: center; gap: calc(var(--g) * 1.6); max-width: 1280px; margin: 0 auto; }
+  .intro { max-width: 1280px; margin: 0 auto clamp(32px, 4vw, 56px); }
+  .intro h2 { font-size: clamp(22px, 2vw, 28px); font-weight: 500; line-height: 1.2; margin: 0 0 10px; }
+  .intro p { font-size: 14px; line-height: 1.55; max-width: 38em; margin: 0; color: #555; }
   .gallery-row { display: flex; gap: var(--g); width: 100%; max-width: min(100%, calc(85svh * var(--a) + var(--g))); }
   .gallery-row.single { max-width: min(100%, calc(85svh * var(--a))); }
   .gallery figure { margin: 0; cursor: pointer; flex: var(--r) 1 0; min-width: 0; }
   .gallery img { width: 100%; height: auto; aspect-ratio: var(--r); background: var(--empty); transition: opacity .2s ease; }
-  .gallery figcaption { margin-top: 6px; font-size: 13px; }
+  .gallery figcaption { margin-top: 6px; font-size: 13px; color: var(--muted); text-align: right; }
   .gallery figure:hover img { opacity: .85; }
 
   /* ---------- inner pages ---------- */
@@ -134,13 +135,12 @@
     body:not([data-view="home"]) .views { display: none; }
     /* tone and collection sit in a bar at the bottom; tap to open the list */
     .side { top: auto; bottom: var(--pad-b); transform: none; max-width: 48vw; z-index: 25; gap: 6px; }
-    .side .label { display: none; }
     .side button:not([aria-pressed="true"]) { display: none; }
     .side.open button { display: block; }
     .side.open { background: var(--paper); padding: 12px 0 0; }
     .side button[aria-pressed="true"] { font-size: 18px; margin: 0; }
     body[data-view="home"]::after { content: ""; position: fixed; z-index: 22; left: 0; right: 0; bottom: 0; height: calc(var(--pad-b) + 40px); background: var(--paper); }
-    .shot .num { display: none; }
+    .stage .num { display: none; }
     .gallery { padding: calc(var(--pad-t) + 96px) var(--pad-r) 96px var(--pad-l); }
     .about, .contact { grid-template-columns: 1fr; }
     .work-grid { grid-template-columns: 1fr; }
@@ -175,6 +175,7 @@
     <div class="stage" id="stage"></div>
   </section>
   <section class="gallery" id="gallery" aria-label="All photographs" hidden>
+    <header class="intro" id="intro"><h2 id="introTitle"></h2><p id="introText"></p></header>
     <div class="gallery-grid" id="galleryGrid"></div>
   </section>
 </main>
@@ -260,8 +261,7 @@
       .filter(([k]) => ALL.some(p => p.tone === k))
       .map(([k, label]) => `<button data-k="${k}" aria-pressed="${k === tone}">${label}</button>`).join('');
     const available = COLLECTIONS.filter(c => ALL.some(p => p.tone === tone && p.collection === c));
-    collEl.innerHTML = `<span class="label">Collections</span>` +
-      [['all', 'All'], ...available.map(c => [c, c])]
+    collEl.innerHTML = [['all', 'All'], ...available.map(c => [c, c])]
         .map(([k, label]) => `<button data-k="${k}" aria-pressed="${k === collection}">${label}</button>`).join('');
   }
   function sideClick(el, set) {
@@ -286,7 +286,7 @@
   const GAP = 26;            // space between photos, px
   const NEXT = 0.30;         // size of the photos just above and below, relative to the centre one
   const FAR = 0.13;          // size of photos two or more places away
-  const EASE = 0.12;         // 0..1 per frame: lower = smoother, slower glide
+  const EASE = 0.12;         // 0..1 per 60Hz frame: lower = smoother, slower glide
 
   const vh = () => stage.clientHeight || window.innerHeight;
   const step = () => Math.round(vh() * 0.55);    // scroll distance from one photo to the next
@@ -297,15 +297,19 @@
       const f = document.createElement('figure');
       f.className = 'shot ' + (i % 2 ? 'r' : 'l');
       const alt = p.tone === 'bw' ? 'Black and white film photograph' : 'Colour film photograph';
-      f.innerHTML = `<div class="pic"><img alt="${alt}${p.collection ? ', ' + p.collection : ''}" decoding="async"></div><span class="num">(${i + 1})</span>`;
+      f.innerHTML = `<div class="pic"><img alt="${alt}${p.collection ? ', ' + p.collection : ''}" decoding="async"></div>`;
       f.addEventListener('click', () => goTo(i));
-      stage.appendChild(f);
-      return { el: f, img: f.querySelector('img'), num: f.querySelector('.num'), p, loaded: false };
+      const num = document.createElement('span');
+      num.className = 'num'; num.textContent = `(${i + 1})`;
+      stage.append(f, num);
+      return { el: f, img: f.querySelector('img'), num, side: i % 2 ? 1 : -1, p, loaded: false, big: null };
     });
     if (!shots.length) stage.innerHTML = '<p class="empty-note">No photos here yet.</p>';
     sizeList();
   }
   function sizeList() {
+    // each photo is laid out once at its full (centred) size; scrolling only scales it on the GPU
+    shots.forEach(sh => { sh.big = bigSize(sh.p); sh.el.style.width = sh.big[0] + 'px'; sh.el.style.height = sh.big[1] + 'px'; });
     const s = step();
     list.style.height = `calc(${Math.max(0, shots.length - 1) * s}px + 100svh)`;
     list.querySelectorAll('.snap').forEach(x => x.remove());
@@ -332,16 +336,20 @@
 
   /* The drawn position ("shown") glides toward the scroll position instead of jumping with it,
      so each wheel click or swipe becomes one continuous movement. */
-  let shown = null;
+  let shown = null, lastT = 0;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   function target() {
     return Math.min(Math.max(0, shots.length - 1), Math.max(0, (window.scrollY - listTop()) / step()));
   }
-  function update() {
+  function update(now) {
     if (body.dataset.view !== 'home' || body.dataset.mode !== 'list' || !shots.length) return false;
     const t = target();
     if (shown === null || reduceMotion.matches) shown = t;
-    else shown += (t - shown) * EASE;
+    else {
+      const dt = lastT ? Math.min(64, now - lastT) : 16.7;
+      shown += (t - shown) * (1 - Math.pow(1 - EASE, dt / 16.7));   // same feel at 60Hz and 120Hz
+    }
+    lastT = now;
     const settled = Math.abs(t - shown) < 0.0015;
     if (settled) shown = t;
     draw(shown);
@@ -351,8 +359,7 @@
     const H = vh();
     const dims = shots.map((sh, i) => {
       const k = scaleAt(Math.abs(i - f));
-      const [w, h] = bigSize(sh.p);
-      return [w * k, h * k];
+      return [sh.big[0] * k, sh.big[1] * k, k];
     });
     const C = [0];
     for (let i = 1; i < dims.length; i++) C[i] = C[i - 1] + (dims[i - 1][1] + dims[i][1]) / 2 + GAP;
@@ -360,20 +367,20 @@
     const cf = lo + 1 < C.length ? C[lo] + (C[lo + 1] - C[lo]) * fr : C[lo];
     const mid = H / 2 + 16;
     shots.forEach((sh, i) => {
-      const [w, h] = dims[i];
+      const [w, h, k] = dims[i];
       const y = mid + C[i] - cf - h / 2;
       const visible = y + h > -60 && y < H + 60;
-      sh.el.style.visibility = visible ? 'visible' : 'hidden';
+      sh.el.style.visibility = sh.num.style.visibility = visible ? 'visible' : 'hidden';
       if (!visible) return;
       if (!sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; }
-      sh.el.style.width = w + 'px';
-      sh.el.style.height = h + 'px';
-      sh.el.style.transform = `translate3d(${-w / 2}px, ${y}px, 0)`;
+      sh.el.style.transform = `translate3d(${(-w / 2).toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${k.toFixed(5)})`;
+      const nx = sh.side * (w / 2 + 16);
+      sh.num.style.transform = `translate3d(${nx.toFixed(2)}px, ${(y + h + 3).toFixed(2)}px, 0) translate(${sh.side < 0 ? '-100%' : '0'}, -100%)`;
     });
     [Math.ceil(f) + 1, Math.ceil(f) + 2].forEach(i => { const sh = shots[i]; if (sh && !sh.loaded) { sh.img.src = sh.p.src; sh.loaded = true; } });
   }
   let running = false;
-  function loop() { if (update()) requestAnimationFrame(loop); else running = false; }
+  function loop(now) { if (update(now)) requestAnimationFrame(loop); else { running = false; lastT = 0; } }
   const schedule = () => { if (!running) { running = true; requestAnimationFrame(loop); } };
 
   window.addEventListener('scroll', schedule, { passive: true });
@@ -387,7 +394,11 @@
 
   /* ---------- gallery view ---------- */
   const grid = document.getElementById('galleryGrid');
+  const NOTES = window.NOTES || {};
   function buildGallery() {
+    const all = collection === 'all';
+    document.getElementById('introTitle').textContent = all ? TONES[tone] : collection;
+    document.getElementById('introText').textContent = NOTES[all ? '_all_' + tone : collection] || '';
     let html = '';
     for (let i = 0; i < photos.length; i += 2) {
       const pair = photos.slice(i, i + 2);
