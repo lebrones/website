@@ -135,29 +135,18 @@
   .send:hover { background: var(--ink); color: var(--paper); }
   .note { font-size: 14px; min-height: 1.4em; margin: 0; }
 
-  /* ---------- prints: each photo in a thin dark wooden frame, one after the other ---------- */
-  .prints-list { display: flex; flex-direction: column; align-items: center; gap: clamp(96px, 16vh, 200px); padding: 40px 0 80px; }
-  .print { margin: 0; position: relative; }
-  .print .frame {
-    --t: calc(var(--fw) * 0.038);            /* moulding: 3.8% of the frame's short side */
-    box-sizing: content-box; display: block; background: #28221d; padding: var(--t);
-    width: var(--iw); aspect-ratio: var(--r);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .35), 0 1px 2px rgba(0, 0, 0, .08);
-  }
-  .print .frame img { width: 100%; height: 100%; object-fit: cover; background: var(--empty);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2); }
-  .print .inner { position: relative; width: 100%; height: 100%; }
+  /* ---------- prints: same layout as the home gallery, each photo in a thin dark wooden frame ---------- */
+  .print .frame { display: block; background: #28221d; padding: 3.8%;            /* moulding: 3.8% of the short side */
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .35); }
+  .print.h .frame { padding: calc(3.8% / var(--r)); }                               /* frame turned on its side */
+  .print .inner { position: relative; aspect-ratio: var(--r); }
+  .print .inner img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; background: var(--empty); }
   .print .inner::after { content: ""; position: absolute; inset: 0; pointer-events: none;   /* a little depth where glass meets wood */
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .28), inset -1px -1px 2px rgba(0, 0, 0, .12); }
-  /* portrait: as tall as the screen allows; landscape: the same frame turned on its side */
-  .print.v { --iw: min(calc((100svh - 220px) * var(--r)), calc(100vw - 96px), 640px); --fw: var(--iw); }
-  .print.h { --iw: min(calc(100vw - 96px), 980px, calc((100svh - 220px) * var(--r))); --fw: calc(var(--iw) / var(--r)); }
-  .print figcaption { position: absolute; left: calc(100% + 16px); bottom: -3px; white-space: nowrap; font-size: 13px; color: var(--muted); }
-  @media (max-width: 760px) {
-    .print.v { --iw: min(calc(100vw - 64px), calc((100svh - 240px) * var(--r))); }
-    .print.h { --iw: calc(100vw - 48px); }
-    .print figcaption { position: static; margin-top: 8px; text-align: right; }
-  }
+  .prints .gallery-row.single { max-width: min(60%, calc(50svh * var(--a))); }      /* prints sit smaller than photos */
+  .prints .gallery-row:not(.single) { max-width: min(100%, calc(50svh * var(--a) + var(--g))); }
+  .prints figure { cursor: default; }
+  @media (max-width: 600px) { .prints .gallery-row.single, .prints .gallery-row:not(.single) { max-width: 100%; } }
 
   footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 24px var(--pad-r) calc(var(--pad-b) + 8px) var(--pad-l); font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
   body[data-view="home"][data-mode="list"] footer { display: none; }
@@ -251,10 +240,9 @@
 </section>
 
 <!-- ============ PRINTS ============ -->
-<section class="page" id="prints" hidden>
-  <p class="eyebrow">Prints</p>
-  <h1>Framed prints</h1>
-  <div class="prints-list" id="printsList"></div>
+<section class="gallery prints" id="prints" hidden>
+  <header class="intro"><h2>Prints</h2><p>A selection of the photographs as framed prints. For sizes and availability, get in touch.</p></header>
+  <div class="gallery-grid" id="printsList"></div>
 </section>
 
 <!-- ============ CONTACT ============ -->
@@ -500,20 +488,31 @@
     `<figure>${w.cover ? `<img class="ph" src="${w.cover}" alt="">` : '<div class="ph" aria-hidden="true">Images coming soon</div>'}<figcaption><h2>${w.title}</h2><p>${w.text}</p></figcaption></figure>`).join('');
 
   /* ---------- routing ---------- */
-  /* ---------- prints: file names of the photos to show, in order ---------- */
+  /* ---------- prints: file names of the photos to show, in order (two verticals in a row share it) ---------- */
   const PRINTS = [
-    'R1-06986-0002.webp', 'R1-06986-0033.webp', 'R1-06987-0027.webp', 'R1-02540-0019.webp',
-    'R1-06986-0022.webp', 'R1-06986-0016.webp', 'R1-06987-0021.webp', 'R1-06987-0026.webp',
-    'color-05.jpg', 'R1-06987-0035.webp', 'R1-06986-0019.webp', 'edited.webp',
+    'R1-06986-0002.webp', 'R1-06987-0027.webp', 'R1-06986-0033.webp', 'R1-02540-0019.webp',
+    'R1-06986-0022.webp', 'R1-06986-0019.webp', 'R1-06986-0016.webp', 'R1-06987-0026.webp',
+    'R1-06987-0021.webp', 'color-05.jpg', 'R1-06987-0035.webp', 'edited.webp',
     'color-07.jpg', '15--4630alberto931.webp',
   ];
-  document.getElementById('printsList').innerHTML = PRINTS
-    .map(f => ALL.find(p => p.src.endsWith('/' + f))).filter(Boolean)
-    .map(p => {
+  (function buildPrints() {
+    const list = PRINTS.map(f => ALL.find(p => p.src.endsWith('/' + f))).filter(Boolean);
+    const vertical = p => p && p.h > p.w;
+    const fig = p => {
       const r = p.w / p.h;
-      const srcset = p.preview ? `srcset="${p.preview} ${Math.round(r >= 1 ? 1400 : 1400 * r)}w, ${p.src} ${p.w}w" sizes="(max-width: 760px) 100vw, ${r < 1 ? 640 : 980}px"` : '';
+      const srcset = p.preview ? `srcset="${p.preview} ${Math.round(r >= 1 ? 1400 : 1400 * r)}w, ${p.src} ${p.w}w" sizes="(max-width: 760px) 100vw, 640px"` : '';
       return `<figure class="print ${r < 1 ? 'v' : 'h'}" style="--r:${r.toFixed(4)}"><div class="frame"><div class="inner"><img src="${p.src}" ${srcset} width="${p.w}" height="${p.h}" alt="${p.title ? p.title + ', ' : ''}framed print" loading="lazy" decoding="async"></div></div>${p.title ? `<figcaption>${p.title}</figcaption>` : ''}</figure>`;
-    }).join('');
+    };
+    let html = '';
+    for (let i = 0; i < list.length;) {
+      const n = vertical(list[i]) && vertical(list[i + 1]) ? 2 : 1;
+      const row = list.slice(i, i + n);
+      const a = row.reduce((t, p) => t + p.w / p.h, 0);
+      html += `<div class="gallery-row${n === 1 ? ' single' : ''}" style="--a:${a.toFixed(4)}">` + row.map(fig).join('') + '</div>';
+      i += n;
+    }
+    document.getElementById('printsList').innerHTML = html;
+  })();
 
   const PAGES = ['about', 'work', 'contact', 'prints'];
   function route() {
