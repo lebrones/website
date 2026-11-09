@@ -20,7 +20,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Riviera",
-  "title": "Sunday market"
+  "title": "Sunday market",
+  "preview": "assets/images/preview/000039000003.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000008 Large 2.webp",
@@ -28,7 +29,8 @@ window.PHOTOS = [
   "h": 822,
   "tone": "bw",
   "collection": "Riviera",
-  "title": "Aloe at dusk"
+  "title": "Aloe at dusk",
+  "preview": "assets/images/preview/000039000008-Large-2.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000010.webp",
@@ -36,7 +38,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Riviera",
-  "title": "Washing day"
+  "title": "Washing day",
+  "preview": "assets/images/preview/000039000010.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000013.webp",
@@ -44,7 +47,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Riviera",
-  "title": "C\u00f4te \u00e0 C\u00f4te"
+  "title": "C\u00f4te \u00e0 C\u00f4te",
+  "preview": "assets/images/preview/000039000013.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000025.webp",
@@ -52,7 +56,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Mountains",
-  "title": "Open skylight"
+  "title": "Open skylight",
+  "preview": "assets/images/preview/000039000025.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000027.webp",
@@ -60,7 +65,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Mountains",
-  "title": "Orchard under nets"
+  "title": "Orchard under nets",
+  "preview": "assets/images/preview/000039000027.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000028.webp",
@@ -68,7 +74,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Mountains",
-  "title": "Bare vineyard"
+  "title": "Bare vineyard",
+  "preview": "assets/images/preview/000039000028.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000034.webp",
@@ -76,7 +83,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "Mountains",
-  "title": "Chalet terrace"
+  "title": "Chalet terrace",
+  "preview": "assets/images/preview/000039000034.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000036.webp",
@@ -84,7 +92,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Mountains",
-  "title": "Chairlift in the alley"
+  "title": "Chairlift in the alley",
+  "preview": "assets/images/preview/000039000036.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/1--4630alberto931.webp",
@@ -92,7 +101,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Stairwell"
+  "title": "Stairwell",
+  "preview": "assets/images/preview/1--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/10--4630alberto931.webp",
@@ -100,7 +110,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Flue"
+  "title": "Flue",
+  "preview": "assets/images/preview/10--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/15--4630alberto931.webp",
@@ -108,7 +119,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "City",
-  "title": "Good news, bad news"
+  "title": "Good news, bad news",
+  "preview": "assets/images/preview/15--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/19--4630alberto931.webp",
@@ -116,7 +128,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Glass stairs"
+  "title": "Glass stairs",
+  "preview": "assets/images/preview/19--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/20--4630alberto931.webp",
@@ -124,7 +137,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Going down"
+  "title": "Going down",
+  "preview": "assets/images/preview/20--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/22--4630alberto931.webp",
@@ -132,7 +146,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Going up"
+  "title": "Going up",
+  "preview": "assets/images/preview/22--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/31--4630alberto931.webp",
@@ -140,7 +155,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Bikes on the field"
+  "title": "Bikes on the field",
+  "preview": "assets/images/preview/31--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/36--4630alberto931.webp",
@@ -148,7 +164,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Night light"
+  "title": "Night light",
+  "preview": "assets/images/preview/36--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/4--4630alberto931.webp",
@@ -156,7 +173,8 @@ window.PHOTOS = [
   "h": 1989,
   "tone": "bw",
   "collection": "City",
-  "title": "Parked"
+  "title": "Parked",
+  "preview": "assets/images/preview/4--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/7--4630alberto931.webp",
@@ -164,7 +182,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "City",
-  "title": "Two pipes"
+  "title": "Two pipes",
+  "preview": "assets/images/preview/7--4630alberto931.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0000.webp",
@@ -172,7 +191,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "First frame"
+  "title": "First frame",
+  "preview": "assets/images/preview/R1-02540-0000.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0003.webp",
@@ -180,7 +200,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Morning plans"
+  "title": "Morning plans",
+  "preview": "assets/images/preview/R1-02540-0003.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0009.webp",
@@ -188,7 +209,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Picnic"
+  "title": "Picnic",
+  "preview": "assets/images/preview/R1-02540-0009.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0012.webp",
@@ -196,7 +218,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Parasol"
+  "title": "Parasol",
+  "preview": "assets/images/preview/R1-02540-0012.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0014.webp",
@@ -204,7 +227,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Empty beach"
+  "title": "Empty beach",
+  "preview": "assets/images/preview/R1-02540-0014.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0015.webp",
@@ -212,7 +236,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "One rider"
+  "title": "One rider",
+  "preview": "assets/images/preview/R1-02540-0015.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0016.webp",
@@ -220,7 +245,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Walking in"
+  "title": "Walking in",
+  "preview": "assets/images/preview/R1-02540-0016.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0017.webp",
@@ -228,7 +254,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Coming out"
+  "title": "Coming out",
+  "preview": "assets/images/preview/R1-02540-0017.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0019.webp",
@@ -236,7 +263,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Shade"
+  "title": "Shade",
+  "preview": "assets/images/preview/R1-02540-0019.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0021.webp",
@@ -244,7 +272,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Surf trip",
-  "title": "Watching the sets"
+  "title": "Watching the sets",
+  "preview": "assets/images/preview/R1-02540-0021.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0022.webp",
@@ -252,7 +281,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Riviera",
-  "title": "Dome and wires"
+  "title": "Dome and wires",
+  "preview": "assets/images/preview/R1-02540-0022.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0035.webp",
@@ -260,7 +290,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Mountains",
-  "title": "Through the gorge"
+  "title": "Through the gorge",
+  "preview": "assets/images/preview/R1-02540-0035.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0000.webp",
@@ -268,7 +299,8 @@ window.PHOTOS = [
   "h": 2001,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "White steps"
+  "title": "White steps",
+  "preview": "assets/images/preview/R1-06986-0000.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0001.webp",
@@ -276,7 +308,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Wall and sky"
+  "title": "Wall and sky",
+  "preview": "assets/images/preview/R1-06986-0001.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0002.webp",
@@ -284,7 +317,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Closed parasol"
+  "title": "Closed parasol",
+  "preview": "assets/images/preview/R1-06986-0002.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0004.webp",
@@ -292,7 +326,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Railing"
+  "title": "Railing",
+  "preview": "assets/images/preview/R1-06986-0004.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0005.webp",
@@ -300,7 +335,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Gap in the hedge"
+  "title": "Gap in the hedge",
+  "preview": "assets/images/preview/R1-06986-0005.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0007.webp",
@@ -308,7 +344,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Towel"
+  "title": "Towel",
+  "preview": "assets/images/preview/R1-06986-0007.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0008.webp",
@@ -316,7 +353,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Reflection"
+  "title": "Reflection",
+  "preview": "assets/images/preview/R1-06986-0008.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0009.webp",
@@ -324,7 +362,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Behind the glass"
+  "title": "Behind the glass",
+  "preview": "assets/images/preview/R1-06986-0009.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0010.webp",
@@ -332,7 +371,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Eyes"
+  "title": "Eyes",
+  "preview": "assets/images/preview/R1-06986-0010.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0013.webp",
@@ -340,7 +380,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "The bay"
+  "title": "The bay",
+  "preview": "assets/images/preview/R1-06986-0013.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0016.webp",
@@ -348,7 +389,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Tunnel"
+  "title": "Tunnel",
+  "preview": "assets/images/preview/R1-06986-0016.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0019.webp",
@@ -356,7 +398,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Cloud cap"
+  "title": "Cloud cap",
+  "preview": "assets/images/preview/R1-06986-0019.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0020.webp",
@@ -364,7 +407,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Garages 2 and 3"
+  "title": "Garages 2 and 3",
+  "preview": "assets/images/preview/R1-06986-0020.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0021.webp",
@@ -372,7 +416,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Tower block"
+  "title": "Tower block",
+  "preview": "assets/images/preview/R1-06986-0021.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0022.webp",
@@ -380,7 +425,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Lighthouse road"
+  "title": "Lighthouse road",
+  "preview": "assets/images/preview/R1-06986-0022.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0025.webp",
@@ -388,7 +434,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Lighthouse in the scrub"
+  "title": "Lighthouse in the scrub",
+  "preview": "assets/images/preview/R1-06986-0025.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0027.webp",
@@ -396,7 +443,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "From the top"
+  "title": "From the top",
+  "preview": "assets/images/preview/R1-06986-0027.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0028.webp",
@@ -404,7 +452,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Red phone box"
+  "title": "Red phone box",
+  "preview": "assets/images/preview/R1-06986-0028.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0030.webp",
@@ -412,7 +461,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Leg over the side"
+  "title": "Leg over the side",
+  "preview": "assets/images/preview/R1-06986-0030.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0032.webp",
@@ -420,7 +470,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Floating"
+  "title": "Floating",
+  "preview": "assets/images/preview/R1-06986-0032.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0033.webp",
@@ -428,7 +479,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Starfish"
+  "title": "Starfish",
+  "preview": "assets/images/preview/R1-06986-0033.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0008.webp",
@@ -436,7 +488,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Back of the shop"
+  "title": "Back of the shop",
+  "preview": "assets/images/preview/R1-06987-0008.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0011.webp",
@@ -444,7 +497,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Footbridge"
+  "title": "Footbridge",
+  "preview": "assets/images/preview/R1-06987-0011.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0012.webp",
@@ -452,7 +506,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Pipes and cables"
+  "title": "Pipes and cables",
+  "preview": "assets/images/preview/R1-06987-0012.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0013.webp",
@@ -460,7 +515,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Overhang"
+  "title": "Overhang",
+  "preview": "assets/images/preview/R1-06987-0013.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0014.webp",
@@ -468,7 +524,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Silver scales"
+  "title": "Silver scales",
+  "preview": "assets/images/preview/R1-06987-0014.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0016.webp",
@@ -476,7 +533,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Fold"
+  "title": "Fold",
+  "preview": "assets/images/preview/R1-06987-0016.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0018.webp",
@@ -484,7 +542,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Twist"
+  "title": "Twist",
+  "preview": "assets/images/preview/R1-06987-0018.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0019.webp",
@@ -492,7 +551,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Shadow seam"
+  "title": "Shadow seam",
+  "preview": "assets/images/preview/R1-06987-0019.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0021.webp",
@@ -500,7 +560,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Crossing the square"
+  "title": "Crossing the square",
+  "preview": "assets/images/preview/R1-06987-0021.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0022.webp",
@@ -508,7 +569,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Figure in the frame"
+  "title": "Figure in the frame",
+  "preview": "assets/images/preview/R1-06987-0022.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0023.webp",
@@ -516,7 +578,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Ridge"
+  "title": "Ridge",
+  "preview": "assets/images/preview/R1-06987-0023.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0024.webp",
@@ -524,7 +587,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Louvres"
+  "title": "Louvres",
+  "preview": "assets/images/preview/R1-06987-0024.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0025.webp",
@@ -532,7 +596,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "Facades",
-  "title": "Underside"
+  "title": "Underside",
+  "preview": "assets/images/preview/R1-06987-0025.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0026.webp",
@@ -540,7 +605,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Facades",
-  "title": "One window"
+  "title": "One window",
+  "preview": "assets/images/preview/R1-06987-0026.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0027.webp",
@@ -548,7 +614,8 @@ window.PHOTOS = [
   "h": 2610,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Swimmer from above"
+  "title": "Swimmer from above",
+  "preview": "assets/images/preview/R1-06987-0027.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0033.webp",
@@ -556,7 +623,8 @@ window.PHOTOS = [
   "h": 3000,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Cliff and shore"
+  "title": "Cliff and shore",
+  "preview": "assets/images/preview/R1-06987-0033.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0035.webp",
@@ -564,7 +632,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "The Rock",
-  "title": "Gull"
+  "title": "Gull",
+  "preview": "assets/images/preview/R1-06987-0035.webp"
  },
  {
   "src": "assets/images/projects/black-and-white/edited.webp",
@@ -572,7 +641,8 @@ window.PHOTOS = [
   "h": 2011,
   "tone": "bw",
   "collection": "Summer house",
-  "title": "Hammock"
+  "title": "Hammock",
+  "preview": "assets/images/preview/edited.webp"
  },
  {
   "src": "assets/images/projects/colors/color-01.jpg",
@@ -580,7 +650,8 @@ window.PHOTOS = [
   "h": 2000,
   "tone": "color",
   "collection": "Travels",
-  "title": "Balloon lamp"
+  "title": "Balloon lamp",
+  "preview": "assets/images/preview/color-01.webp"
  },
  {
   "src": "assets/images/projects/colors/color-05.jpg",
@@ -588,7 +659,8 @@ window.PHOTOS = [
   "h": 2000,
   "tone": "color",
   "collection": "Travels",
-  "title": "Minaret"
+  "title": "Minaret",
+  "preview": "assets/images/preview/color-05.webp"
  },
  {
   "src": "assets/images/projects/colors/color-07.jpg",
@@ -596,7 +668,8 @@ window.PHOTOS = [
   "h": 1326,
   "tone": "color",
   "collection": "The Rock",
-  "title": "Striped lighthouse"
+  "title": "Striped lighthouse",
+  "preview": "assets/images/preview/color-07.webp"
  },
  {
   "src": "assets/images/projects/colors/color-09.jpg",
@@ -604,6 +677,7 @@ window.PHOTOS = [
   "h": 2000,
   "tone": "color",
   "collection": "Travels",
-  "title": "Photo booth"
+  "title": "Photo booth",
+  "preview": "assets/images/preview/color-09.webp"
  }
 ];
