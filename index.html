@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Alberto Bonino — Photography</title>
 <meta name="description" content="Film photography by Alberto Bonino, in black and white and colour.">
-<script src="assets/data/photos.js?v=1794256381"></script>
+<script src="assets/data/photos.js?v=1794256877"></script>
 <style>
   :root {
     --paper: #ffffff;
@@ -80,13 +80,15 @@
      row come out the same height with nothing cropped. The grid stops growing at 1920px, and a
      row is capped so its photos are never taller than 85% of the screen. Spacing is fluid
      (clamp) rather than fixed breakpoints; the one hard breakpoint is 600px, where rows stack. */
-  .gallery { padding: calc(var(--pad-t) + 76px) clamp(16px, 20vw, 400px) 120px; }
-  .gallery-grid { --g: clamp(12px, 1.4vw, 24px); display: flex; flex-direction: column; align-items: center; gap: calc(var(--g) * 1.6); max-width: 1280px; margin: 0 auto; }
-  .intro { max-width: 1280px; margin: 0 auto clamp(32px, 4vw, 56px); }
-  .intro h2 { font-size: clamp(22px, 2vw, 28px); font-weight: 500; line-height: 1.2; margin: 0 0 10px; }
-  .intro p { font-size: 14px; line-height: 1.55; max-width: 38em; margin: 0; color: #555; }
-  .gallery-row { display: flex; gap: var(--g); width: 100%; max-width: min(100%, calc(85svh * var(--a) + var(--g))); }
-  .gallery-row.single { max-width: min(100%, calc(85svh * var(--a))); }
+  /* The intro fills the top half of the screen, so the first photos start exactly at its middle.
+     Landscape photos always sit alone; two portraits in a row share one. Every row fits the screen. */
+  .gallery { padding: 0 clamp(16px, 20vw, 400px) 160px; }
+  .gallery-grid { --g: clamp(14px, 1.6vw, 28px); display: flex; flex-direction: column; align-items: center; gap: clamp(72px, 9vw, 150px); max-width: 1280px; margin: 0 auto; }
+  .intro { max-width: 1280px; min-height: 50vh; min-height: 50svh; margin: 0 auto; padding: calc(var(--pad-t) + 72px) 0 clamp(36px, 5vh, 64px); display: flex; flex-direction: column; justify-content: flex-end; }
+  .intro h2 { font-size: clamp(44px, 6vw, 92px); font-weight: 500; line-height: 1; letter-spacing: -0.02em; margin: 0 0 20px; }
+  .intro p { font-size: 17px; font-weight: 400; line-height: 1.45; max-width: 36em; margin: 0; color: var(--muted); }
+  .gallery-row { display: flex; gap: var(--g); width: 100%; max-width: min(100%, calc(78svh * var(--a) + var(--g))); }
+  .gallery-row.single { max-width: min(100%, calc(78svh * var(--a))); }
   .gallery figure { margin: 0; cursor: pointer; flex: var(--r) 1 0; min-width: 0; }
   .gallery img { width: 100%; height: auto; aspect-ratio: var(--r); background: var(--empty); transition: opacity .2s ease; }
   .gallery figcaption { margin-top: 6px; font-size: 13px; color: var(--muted); text-align: right; }
@@ -141,7 +143,8 @@
     .side button[aria-pressed="true"] { font-size: 18px; margin: 0; }
     body[data-view="home"]::after { content: ""; position: fixed; z-index: 22; left: 0; right: 0; bottom: 0; height: calc(var(--pad-b) + 40px); background: var(--paper); }
     .stage .num { display: none; }
-    .gallery { padding: calc(var(--pad-t) + 96px) var(--pad-r) 96px var(--pad-l); }
+    .gallery { padding: 0 var(--pad-r) 96px var(--pad-l); }
+    .intro { padding-top: calc(var(--pad-t) + 96px); }
     .about, .contact { grid-template-columns: 1fr; }
     .work-grid { grid-template-columns: 1fr; }
   }
@@ -300,7 +303,7 @@
       f.innerHTML = `<div class="pic"><img alt="${alt}${p.collection ? ', ' + p.collection : ''}" decoding="async"></div>`;
       f.addEventListener('click', () => goTo(i));
       const num = document.createElement('span');
-      num.className = 'num'; num.textContent = `(${i + 1})`;
+      num.className = 'num'; num.textContent = p.title || `(${i + 1})`;
       stage.append(f, num);
       return { el: f, img: f.querySelector('img'), num, side: i % 2 ? 1 : -1, p, loaded: false, big: null };
     });
@@ -400,11 +403,14 @@
     document.getElementById('introTitle').textContent = all ? TONES[tone] : collection;
     document.getElementById('introText').textContent = NOTES[all ? '_all_' + tone : collection] || '';
     let html = '';
-    for (let i = 0; i < photos.length; i += 2) {
-      const pair = photos.slice(i, i + 2);
-      const a = pair.reduce((t, p) => t + p.w / p.h, 0);
-      html += `<div class="gallery-row${pair.length === 1 ? ' single' : ''}" style="--a:${a.toFixed(4)}">` + pair.map((p, k) =>
-        `<figure data-i="${i + k}" style="--r:${(p.w / p.h).toFixed(4)}"><img src="${p.src}" width="${p.w}" height="${p.h}" alt="${p.tone === 'bw' ? 'Black and white' : 'Colour'} film photograph" loading="lazy" decoding="async"><figcaption>(${i + k + 1})</figcaption></figure>`).join('') + '</div>';
+    const portrait = p => p && p.h > p.w;
+    for (let i = 0; i < photos.length;) {
+      const n = portrait(photos[i]) && portrait(photos[i + 1]) ? 2 : 1;   // landscapes always alone
+      const row = photos.slice(i, i + n);
+      const a = row.reduce((t, p) => t + p.w / p.h, 0);
+      html += `<div class="gallery-row${n === 1 ? ' single' : ''}" style="--a:${a.toFixed(4)}">` + row.map((p, k) =>
+        `<figure data-i="${i + k}" style="--r:${(p.w / p.h).toFixed(4)}"><img src="${p.src}" width="${p.w}" height="${p.h}" alt="${p.title ? p.title + ', ' : ''}${p.tone === 'bw' ? 'black and white' : 'colour'} film photograph" loading="lazy" decoding="async"><figcaption>${p.title || '(' + (i + k + 1) + ')'}</figcaption></figure>`).join('') + '</div>';
+      i += n;
     }
     grid.innerHTML = html || '<p class="eyebrow">No photos here yet.</p>';
   }

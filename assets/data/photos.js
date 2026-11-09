@@ -19,517 +19,591 @@ window.PHOTOS = [
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Riviera"
+  "collection": "Riviera",
+  "title": "Sunday market"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000008 Large 2.webp",
   "w": 1240,
   "h": 822,
   "tone": "bw",
-  "collection": "Riviera"
+  "collection": "Riviera",
+  "title": "Aloe at dusk"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000010.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Riviera"
+  "collection": "Riviera",
+  "title": "Washing day"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000013.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Riviera"
+  "collection": "Riviera",
+  "title": "C\u00f4te \u00e0 C\u00f4te"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000025.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Mountains"
+  "collection": "Mountains",
+  "title": "Open skylight"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000027.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Mountains"
+  "collection": "Mountains",
+  "title": "Orchard under nets"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000028.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Mountains"
+  "collection": "Mountains",
+  "title": "Bare vineyard"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000034.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "Mountains"
+  "collection": "Mountains",
+  "title": "Chalet terrace"
  },
  {
   "src": "assets/images/projects/black-and-white/000039000036.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "Mountains"
+  "collection": "Mountains",
+  "title": "Chairlift in the alley"
  },
  {
   "src": "assets/images/projects/black-and-white/1--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Stairwell"
  },
  {
   "src": "assets/images/projects/black-and-white/10--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Flue"
  },
  {
   "src": "assets/images/projects/black-and-white/15--4630alberto931.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Good news, bad news"
  },
  {
   "src": "assets/images/projects/black-and-white/19--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Glass stairs"
  },
  {
   "src": "assets/images/projects/black-and-white/20--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Going down"
  },
  {
   "src": "assets/images/projects/black-and-white/22--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Going up"
  },
  {
   "src": "assets/images/projects/black-and-white/31--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Bikes on the field"
  },
  {
   "src": "assets/images/projects/black-and-white/36--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Night light"
  },
  {
   "src": "assets/images/projects/black-and-white/4--4630alberto931.webp",
   "w": 3000,
   "h": 1989,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Parked"
  },
  {
   "src": "assets/images/projects/black-and-white/7--4630alberto931.webp",
   "w": 1989,
   "h": 3000,
   "tone": "bw",
-  "collection": "City"
+  "collection": "City",
+  "title": "Two pipes"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0000.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "First frame"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0003.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Morning plans"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0009.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Picnic"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0012.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Parasol"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0014.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Empty beach"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0015.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "One rider"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0016.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Walking in"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0017.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Coming out"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0019.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Shade"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0021.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Surf trip"
+  "collection": "Surf trip",
+  "title": "Watching the sets"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0022.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Riviera"
+  "collection": "Riviera",
+  "title": "Dome and wires"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-02540-0035.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Mountains"
+  "collection": "Mountains",
+  "title": "Through the gorge"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0000.webp",
   "w": 2984,
   "h": 2001,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "White steps"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0001.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Wall and sky"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0002.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Closed parasol"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0004.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Railing"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0005.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Gap in the hedge"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0007.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Towel"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0008.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Reflection"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0009.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Behind the glass"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0010.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Eyes"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0013.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "The bay"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0016.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Tunnel"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0019.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Cloud cap"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0020.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Garages 2 and 3"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0021.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Tower block"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0022.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Lighthouse road"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0025.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Lighthouse in the scrub"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0027.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "From the top"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0028.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Red phone box"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0030.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Leg over the side"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0032.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Floating"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06986-0033.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Starfish"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0008.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Back of the shop"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0011.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Footbridge"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0012.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Pipes and cables"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0013.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Overhang"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0014.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Silver scales"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0016.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Fold"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0018.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Twist"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0019.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Shadow seam"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0021.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Crossing the square"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0022.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Figure in the frame"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0023.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Ridge"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0024.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Louvres"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0025.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "Underside"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0026.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Facades"
+  "collection": "Facades",
+  "title": "One window"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0027.webp",
   "w": 1750,
   "h": 2610,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Swimmer from above"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0033.webp",
   "w": 2011,
   "h": 3000,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Cliff and shore"
  },
  {
   "src": "assets/images/projects/black-and-white/R1-06987-0035.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Gull"
  },
  {
   "src": "assets/images/projects/black-and-white/edited.webp",
   "w": 3000,
   "h": 2011,
   "tone": "bw",
-  "collection": "Summer house"
+  "collection": "Summer house",
+  "title": "Hammock"
  },
  {
   "src": "assets/images/projects/colors/color-01.jpg",
   "w": 1326,
   "h": 2000,
   "tone": "color",
-  "collection": "Travels"
+  "collection": "Travels",
+  "title": "Balloon lamp"
  },
  {
   "src": "assets/images/projects/colors/color-05.jpg",
   "w": 1346,
   "h": 2000,
   "tone": "color",
-  "collection": "Travels"
+  "collection": "Travels",
+  "title": "Minaret"
  },
  {
   "src": "assets/images/projects/colors/color-07.jpg",
   "w": 2000,
   "h": 1326,
   "tone": "color",
-  "collection": "The Rock"
+  "collection": "The Rock",
+  "title": "Striped lighthouse"
  },
  {
   "src": "assets/images/projects/colors/color-09.jpg",
   "w": 1326,
   "h": 2000,
   "tone": "color",
-  "collection": "Travels"
+  "collection": "Travels",
+  "title": "Photo booth"
  }
 ];
